@@ -1,0 +1,164 @@
+=Parsing XML=
+
+==Introduction==
+
+_Marknote_ is a Javascript library that consists of a number of classes which you instantiate and use to manipulate XML and JSON.
+
+_Marknote_ includes a `marknote.Parser` class to parse XML from a string or a URL. Its output is a `marknote.Document` object.
+
+==Reading XML from a String==
+
+Use a `marknote.Parser` object to parse XML from a string into a `marknote.Document` object.
+
+Here is an example of parsing XML from a string into a `marknote.Document` object:
+
+{{{
+    var str =
+        '<books>' +
+        '<book title="A Tale of Two Cities"/>' +
+        '<book title="1984"/>' +
+        '</books>';
+    var parser = new marknote.Parser();
+    var doc = parser.parse(str);
+    alert(doc.toString()); // show the formatted XML
+}}}
+
+==Reading XML directly from a URL==
+
+===Introduction===
+
+_Marknote_ can easily parse XML documents from a URL within its own application context. For example, if `foo.com/myContext` has a URL, `http://foo.com/myContext/getMyXml?xmlFile=bar`, then local Javascript within `http://foo.com/myContext` can directly parse the content streamed back from that URL.
+
+_Marknote_ may also consume XML from URL's outside its own application context in one of two ways:
+  * by directly accessing a URL local to its context, which in turn obtains and streams back the external XML.
+  * by making an Ajax call capable of obtaining the external XML, which provides output in its response stream which can then be parsed normally as a string.
+
+===Reading the URL===
+
+As with strings, _Marknote_ will parse XML from a URL into a `marknote.Document` object.
+
+Here is an example of code that reads XML directly from a specified URL:
+
+{{{
+    var url = "movies.xml";
+    var parser = new marknote.Parser();
+
+    // optional HTTP request parameters
+    // (used to construct the HTTP query string, if any)
+    var urlParams = {
+        param1: "zzz",
+        param2: "abc"
+    };
+
+    // parse the file
+    // (for POST requests, use "POST" instead of "GET")
+    var doc = parser.parseURL(url,urlParams,"GET");
+
+    // alert out the parsed document
+    alert(doc.toString());
+
+    // check the status
+    alert("Request status is: " + parser.getXHRStatus() +
+        " and the status text is: " + parser.getXHRStatusText());
+
+}}}
+
+==Parsing XML Asynchronously Using AJAX==
+
+===Creating the AJAX Callback Function===
+
+_Marknote_ will also parse XML from the results of an AJAX call. To do this, define a function (called a callback) to handle the response received back from the AJAX request.
+
+Here is an example of a such callback function:
+
+{{{
+    function myCallback(doc, params) {
+        var pretty = doc.toString();
+        alert(pretty); // alert out the formatted XML
+        var status = params.status;
+        if (status === 'foo') {
+            // do something
+        } else if (status === 'bar') {
+            // do something else 
+        } else {
+            // do something else 
+        }
+    }
+}}}
+
+The first parameter of the callback function, `doc`, is a `marknote.Document` object holding the XML parsed from the URL. The second parameter of the callback function, `params`, is optional, and holds an object containing any additional information we want to pass to the callback function.
+
+===Making the AJAX Call===
+
+Once you've got the callback function set up, then all that's left to do is fire off the AJAX request and use the callback function to process what comes back from in the AJAX response.
+
+Here is an example of code that reads XML asynchronously from a specified URL, and then fires the callback function shown above to process the resulting XML:
+
+{{{
+    var url = "movies.xml";
+    var ajax = new marknote.AJAX();
+
+    // optional request parameters
+    var urlParams = {
+        foo: "zzz",
+        bar: "abc"
+    };
+
+    // optional callback parameters
+    var callbackParams = {
+        foo: "aaa",
+        bar: "bbb"
+    }; 
+
+    // read the URL
+    // (the callback handles the response)
+    ajax.read(
+        url,
+        urlParams, 
+        myCallback,
+        callbackParams,
+        "GET"
+    );
+}}}
+
+===Checking the Success of the AJAX Response===
+
+You may want to include AJAX response status checking in your AJAX callback function.
+
+Here's an example of callback code that includes a check of the status of the AJAX response:
+
+{{{
+    //
+    // the callback function
+    //
+    function betterCallback(doc, params) {
+
+        // "this" is the marknote.AJAX object
+        var ajaxObj = this;
+
+        alert("status code is: " + ajaxObj.getStatus() + " and status text is: " + ajaxObj.getStatusText());
+
+        // branch code here depending on the status, as needed
+
+        var pretty = doc.toString();
+
+        alert("xml is:\n" + pretty);
+
+    }
+
+    //
+    // read the URL
+    //
+    var url = "movies.xml";
+    var ajax = new sw8t.xml.AJAX();
+    ajax.read(url, null, betterCallback);
+}}}
+
+The `marknote.AJAX` object also includes a `getRequest` function to get the underlying XML HTTP Request (_XHR_) object, and a `getResponseText` function to get the underlying XHR response text.
+
+===Using an Javascript Framework to Make the AJAX call===
+
+Many of the current excellent Javascript frameworks that are now available, such as `jQuery` (http://jquery.com) or `Ext JS` (http://sencha.com), and a number of others, provide strong AJAX handling.  If you use such a framework, you can then of course use that framework's AJAX object to make your AJAX call instead of using a `marknote.AJAX` object to fire off the request.  
+
+The bottom line is that all AJAX calls work the same way:  you make the AJAX call, and you provide a callback function to handle the response text that comes back from the AJAX call.  You may use _Marknote_ code in any AJAX callback handler.
+  
