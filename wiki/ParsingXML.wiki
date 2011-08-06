@@ -2,7 +2,7 @@
 
 ==Introduction==
 
-_Marknote_ is a Javascript library that consists of a number of classes which you instantiate and use to manipulate XML and JSON.
+_Marknote_ is a Javascript library that consists of a number of classes which you can instantiate and use to manipulate XML and JSON.
 
 _Marknote_ includes a `marknote.Parser` class to parse XML from a string or a URL. Its output is a `marknote.Document` object.
 
@@ -67,7 +67,7 @@ Here is an example of code that reads XML directly from a specified URL:
 
 ===Creating the AJAX Callback Function===
 
-_Marknote_ will also parse XML from the results of an AJAX call. To do this, define a function (called a callback) to handle the response received back from the AJAX request.
+_Marknote_ will also parse XML from the `responseText` object resulting from an AJAX call. To do this, define a function (called a callback) to handle the response received back from the AJAX request.
 
 Here is an example of a such callback function:
 
@@ -150,15 +150,17 @@ Here's an example of callback code that includes a check of the status of the AJ
     // read the URL
     //
     var url = "movies.xml";
-    var ajax = new sw8t.xml.AJAX();
+    var ajax = new marknote.AJAX();
     ajax.read(url, null, betterCallback);
 }}}
 
 The `marknote.AJAX` object also includes a `getRequest` function to get the underlying XML HTTP Request (_XHR_) object, and a `getResponseText` function to get the underlying XHR response text.
 
-===Using an Javascript Framework to Make the AJAX call===
+===Using Marknote within a Javascript Framework AJAX Callback===
 
-Many of the current excellent Javascript frameworks that are now available, such as `jQuery` (http://jquery.com) or `Ext JS` (http://sencha.com), and a number of others, provide strong AJAX handling.  If you use such a framework, you can then of course use that framework's AJAX object to make your AJAX call instead of using a `marknote.AJAX` object to fire off the request.  
+Many of the excellent Javascript frameworks that are now available, such as `jQuery` (http://jquery.com) or `Ext JS` (http://sencha.com), and a number of others, provide strong AJAX handling.  If you use such a framework, you can then of course use that framework's AJAX object to make your AJAX call instead of using a `marknote.AJAX` object to fire off the request.  
 
 The bottom line is that all AJAX calls work the same way:  you make the AJAX call, and you provide a callback function to handle the response text that comes back from the AJAX call.  You may use _Marknote_ code in any AJAX callback handler.
+
+Frameworks such as `Ext JS` also include a proxy class to facilitate making AJAX calls to external URL's.
   
