@@ -18,17 +18,17 @@ Use a `marknote.Parser` object to parse XML from a string into a `marknote.Docum
 Here is an example of parsing XML from a string into a `marknote.Document` object:
 
 {{{
-    var str =
-        '<books>' +
-        '<book title="A Tale of Two Cities"/>' +
-        '<book title="1984"/>' +
-        '</books>';
-    var parser = new marknote.Parser();
-    var doc = parser.parse(str);
-    alert(doc.toString()); // show the formatted XML
+var str =
+    '<books>' +
+    '<book title="A Tale of Two Cities"/>' +
+    '<book title="1984"/>' +
+    '</books>';
+var parser = new marknote.Parser();
+var doc = parser.parse(str);
+alert(doc.toString()); // show the formatted XML
 }}}
 
-===Reading XML directly from a URL===
+===Reading XML Directly from a URL===
 
 ====Introduction====
 
@@ -45,26 +45,26 @@ As with strings, _Marknote_ will parse XML from a URL into a `marknote.Document`
 Here is an example of code that reads XML directly from a specified URL:
 
 {{{
-    var url = "movies.xml";
-    var parser = new marknote.Parser();
+var url = "movies.xml";
+var parser = new marknote.Parser();
 
-    // optional HTTP request parameters
-    // (used to construct the HTTP query string, if any)
-    var urlParams = {
-        param1: "zzz",
-        param2: "abc"
-    };
+// optional HTTP request parameters
+// (used to construct the HTTP query string, if any)
+var urlParams = {
+    param1: "zzz",
+    param2: "abc"
+};
 
-    // parse the file
-    // (for POST requests, use "POST" instead of "GET")
-    var doc = parser.parseURL(url,urlParams,"GET");
+// parse the file
+// (for POST requests, use "POST" instead of "GET")
+var doc = parser.parseURL(url,urlParams,"GET");
 
-    // alert out the parsed document
-    alert(doc.toString());
+// alert out the parsed document
+alert(doc.toString());
 
-    // check the status
-    alert("Request status is: " + parser.getXHRStatus() +
-        " and the status text is: " + parser.getXHRStatusText());
+// check the status
+alert("Request status is: " + parser.getXHRStatus() +
+    " and the status text is: " + parser.getXHRStatusText());
 
 }}}
 
@@ -77,18 +77,18 @@ _Marknote_ will also parse XML from the `responseText` object resulting from an 
 Here is an example of a such callback function:
 
 {{{
-    function myCallback(doc, params) {
-        var pretty = doc.toString();
-        alert(pretty); // alert out the formatted XML
-        var status = params.status;
-        if (status === 'foo') {
-            // do something
-        } else if (status === 'bar') {
-            // do something else 
-        } else {
-            // do something else 
-        }
+function myCallback(doc, params) {
+    var pretty = doc.toString();
+    alert(pretty); // alert out the formatted XML
+    var status = params.status;
+    if (status === 'foo') {
+        // do something
+    } else if (status === 'bar') {
+        // do something else 
+    } else {
+        // do something else 
     }
+}
 }}}
 
 The first parameter of the callback function, `doc`, is a `marknote.Document` object holding the XML parsed from the URL. The second parameter of the callback function, `params`, is optional, and holds an object containing any additional information we want to pass to the callback function.
@@ -100,30 +100,30 @@ Once you've got the callback function set up, then all that's left to do is fire
 Here is an example of code that reads XML asynchronously from a specified URL, and then fires the callback function shown above to process the resulting XML:
 
 {{{
-    var url = "movies.xml";
-    var ajax = new marknote.AJAX();
+var url = "movies.xml";
+var ajax = new marknote.AJAX();
 
-    // optional request parameters
-    var urlParams = {
-        foo: "zzz",
-        bar: "abc"
-    };
+// optional request parameters
+var urlParams = {
+    foo: "zzz",
+    bar: "abc"
+};
 
-    // optional callback parameters
-    var callbackParams = {
-        foo: "aaa",
-        bar: "bbb"
-    }; 
+// optional callback parameters
+var callbackParams = {
+    foo: "aaa",
+    bar: "bbb"
+}; 
 
-    // read the URL
-    // (the callback handles the response)
-    ajax.read(
-        url,
-        urlParams, 
-        myCallback,
-        callbackParams,
-        "GET"
-    );
+// read the URL
+// (the callback handles the response)
+ajax.read(
+    url,
+    urlParams, 
+    myCallback,
+    callbackParams,
+    "GET"
+);
 }}}
 
 ====Checking the Success of the AJAX Response====
@@ -133,30 +133,30 @@ You may want to include AJAX response status checking in your AJAX callback func
 Here's an example of callback code that includes a check of the status of the AJAX response:
 
 {{{
-    //
-    // the callback function
-    //
-    function betterCallback(doc, params) {
+//
+// the callback function
+//
+function betterCallback(doc, params) {
 
-        // "this" is the marknote.AJAX object
-        var ajaxObj = this;
+    // "this" is the marknote.AJAX object
+    var ajaxObj = this;
 
-        alert("status code is: " + ajaxObj.getStatus() + " and status text is: " + ajaxObj.getStatusText());
+    alert("status code is: " + ajaxObj.getStatus() + " and status text is: " + ajaxObj.getStatusText());
 
-        // branch code here depending on the status, as needed
+    // branch code here depending on the status, as needed
 
-        var pretty = doc.toString();
+    var pretty = doc.toString();
 
-        alert("xml is:\n" + pretty);
+    alert("xml is:\n" + pretty);
 
-    }
+}
 
-    //
-    // read the URL
-    //
-    var url = "movies.xml";
-    var ajax = new marknote.AJAX();
-    ajax.read(url, null, betterCallback);
+//
+// read the URL
+//
+var url = "movies.xml";
+var ajax = new marknote.AJAX();
+ajax.read(url, null, betterCallback);
 }}}
 
 The `marknote.AJAX` object also includes a `getRequest` function to get the underlying XML HTTP Request (_XHR_) object, and a `getResponseText` function to get the underlying XHR response text.
@@ -168,3 +168,227 @@ Many of the excellent Javascript frameworks that are now available, such as `jQu
 The bottom line is that all AJAX calls work the same way:  you make the AJAX call, and you provide a callback function to handle the response text that comes back from the AJAX call.  You may use _Marknote_ code in any AJAX callback handler.
 
 Frameworks such as `Ext JS` also include a proxy class to facilitate making AJAX calls to external URL's.
+
+==Working with XML Documents==
+
+===Creating an XML Document===
+
+====Introduction====
+
+There are several ways to create a new `marknote.Document` object:
+
+  * Parse the XML from a string or URL.
+  * Create a new `marknote.Document` object from scratch.
+  * Clone an existing `marknote.Document` object.
+
+====Reading XML into a Document====
+
+_Marknote_ can parse XML into a `marknote.Document` object from a string or from a URL.  See [Parsing XML].
+
+====Creating an XML Document from Scratch====
+
+To create a new `marknote.Document` object from scratch, simply instantiate it, and then add content to it.
+
+Here is an example of code that creates a new `marknote.Document` object, and then adds elements and attributes to the document:
+
+{{{
+// create the document, attach the root element
+var doc = new marknote.Document();
+var rootElement = new marknote.Element("songs");
+doc.setRootElement(rootElement);
+
+// add Truckin'
+var truckingElement = new marknote.Element("song");
+truckingElement.setAttribute("artist", "Grateful Dead");
+truckingElement.setAttribute("title", "Truckin'");
+
+rootElement.addChildElement(truckingElement);
+
+// add Smoke on the Water
+var smokeElement = new marknote.Element("song");
+smokeElement.setAttribute("artist", "Deep Purple");
+smokeElement.setAttribute("title", "Smoke on the Water");
+
+rootElement.addChildElement(smokeElement);
+
+// add Hair of the Dog
+var dogElement = new marknote,Element("song");
+
+dogElement.setAttribute("artist", "Nazareth");
+dogElement.setAttribute("title", "Hair of the Dog");
+
+rootElement.addChildElement(dogElement);
+}}}
+
+====Cloning an Existing XML Document====
+
+Cloning an existing XML document creates a new deep copy, identical to the original document.
+
+Here is an example of cloning an XML document:
+
+{{{
+var parser = new marknote.Parser();
+var xml = '<songs><song title="Smoke on the Water"/></songs>';
+var doc = parser.parse(xml);
+
+// clone the first document
+var clonedDoc = doc.clone();
+}}}
+
+===Setting the DOCTYPE===
+
+An XML document type declaration (DOCTYPE) ties an XML document to a document type definition (DTD).  A DOCTYPE, in turn, consists of several components, including the XML document root (top) element name, an availability indicator, a full public identifier (FPI), and a DTD URL.
+
+The simplest way to create a `marknote.DOCTYPE` object is to pass in a string representation of the full DOCTYPE element (including the <! and > tag characters) into its object constructor. For example, the code below creates a `marknote.DOCTYPE` object from the string:
+
+{{{
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+}}}
+
+and then sets the DOCTYPE to a `marknote.Document` object:
+
+{{{
+var doctype = new marknote.DOCTYPE('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+
+// "doc" is a marknote.Document object
+doc.setDOCTYPE(doctype);
+}}}
+
+You can also set a DOCTYPE from its individual parts. For example, given the DOCTYPE:
+
+{{{
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+}}}
+
+the following comprise the DOCTYPE's parts:
+
+|| *DOCTYPE Part* || *Value* ||
+|| Top Element ||  html ||
+|| Availability || PUBLIC ||
+|| Formal Public Identifier (FPI) || "-//W3C//DTD XHTML 1.0 Strict//EN" ||
+|| DTD URL || "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" ||
+
+The formal public identifier (FPI), in turn, also consists of several parts.
+
+For example, given the FPI:
+
+{{{
+"-//W3C//DTD XHTML 1.0 Strict//EN"
+}}}
+
+the following comprise the FPI's parts:
+
+|| *FPI Part* || *Value* ||
+|| Registration || - means not registered, whereas + means registered ||
+|| Organization || W3C ||
+|| Public Text Class || DTD ||
+|| Public Text Description || XHTML 1.0 Strict ||
+|| Public Text Language || EN ||
+
+The following example sets the DOCTYPE for an XML document from its parts:
+
+{{{
+// top element, availability
+var topElement = "html";
+var availability = "PUBLIC";
+
+// create the formal public identifier
+var registration = "-";
+var organization = "W3C";
+var publicTextClass = "DTD";
+var publicTextDescription = "XHTML 1.0 Strict";
+var publicTextLanguage = "EN";
+var FPI = new marknote.FPI(
+    registration,
+    organization,
+    publicTextClass,
+    publicTextDescription,
+    publicTextLanguage
+);
+
+// the DTD URL
+var URL = "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
+
+// create the DOCTYPE
+var doctype = new marknote.DOCTYPE(topElement,availability,FPI,URL);
+
+// set the DOCTYPE to a new XML document
+var doc = new marknote.Document();
+doc.setDOCTYPE(doctype);
+}}}
+
+===Adding Processing Instructions===
+
+A processing instruction consists of a target, as well as a set of attributes which comprise the processing instruction data.
+
+The default processing instruction for an XML document is:
+
+{{{
+<?xml version="1.0" encoding="UTF-8" ?>
+}}}
+
+Taking the above example, `xml` is the processing instruction target, while `encoding="UTF-8"` is the processing instruction data.
+
+To create a `marknote.ProcesssingInstruction` object with the default target of `xml` and the default data of `encoding="UTF-8"`, simply instantiate the object; for example:
+
+{{{
+// create a default processing instruction of
+// <?xml version="1.0" encoding="UTF-8" ?>
+var pi = new marknote.ProcessingInstruction();
+
+// add the processing instruction to a document
+var doc = new sw8t.xml.Document();
+doc.addProcessingInstruction(pi);
+}}}
+
+To add a processing instruction other than the default xml processing instruction, specify the target and data (attributes) for the processing instruction.  For example, to add the processing instruction:
+
+{{{
+<?xml-stylesheet href="mystyles.css" type="text/css">
+}}}
+
+use code such as:
+
+{{{
+// create a processing instruction
+var pi = new marknote.ProcessingInstruction("xml-stylesheet");
+pi.setAttributeValue("href", "mystyles.css");
+pi.setAttributeValue("type", "text/css");
+
+// add the processing instruction to a document
+var doc = new marknote.Document();
+doc.addProcessingInstruction(pi);
+}}}
+
+To remove a processing instruction from a `marknote.Document` object, use the `removeProcessingInstruction` method, specifying the processing instruction to remove by its target name. For example, to remove a processing instruction with a target name of xml-stylesheet:
+
+{{{
+// doc is a marknote.Document object
+doc.removeProcessingInstruction("xml-stylesheet");
+}}}
+
+===Writing Document Output===
+
+====Providing Formatted String Output====
+
+To generate a formatted string representation of a `marknote.Document` object, use its `toString` method.  For example:
+
+{{{
+// "doc" is a marknote.Document object
+var xmlString = doc.toString();
+}}}
+
+====Controlling Output Identation====
+
+When using the `toString` method of a `marknote.Document` object, the output formatter uses the tab character for indentation by default. To instead provide an alternate indentation, pass the indentation as a parameter to the toString method.  For example:
+
+{{{
+// "doc" is a marknote.Document object.
+// use three spaces as the indent.
+var indent = "   ";
+var xmlString = doc.toString(indent);
+
+// now use two tabs as the indent instead
+var anotherIndent = "\t\t";
+var xmlString2 = doc.toString(anotherIndent);
+}}}
