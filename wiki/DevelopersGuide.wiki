@@ -56,9 +56,9 @@ alert("Request status is: " + parser.getXHRStatus() +
 
 }}}
 
-Note that when you read XML directly from a URL this way, you're reading the XML _synchronously_, meaning that Javascript will wait until the read completes before processing its next instruction. The nice thing about this is that you don't need to make an AJAX call, and you don't need to code a callback function.
+Note that when you read XML directly from a URL this way, you're reading the XML _synchronously_, meaning that Javascript will wait until the `parseURL` command completes before processing its next instruction. The nice thing about this is that you don't need to make an AJAX call, and you don't need to code a callback function.
 
-However, often if makes more sense to read XML _asynchronously_ using AJAX (see next section).
+However, often it makes more sense to read XML _asynchronously_ using AJAX (see next section).
 
 ===Reading XML Asynchronously Using AJAX===
 
