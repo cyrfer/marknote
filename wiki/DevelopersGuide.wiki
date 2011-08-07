@@ -368,7 +368,7 @@ doc.removeProcessingInstruction("xml-stylesheet");
 
 ===Writing XML Output===
 
-====Writing Formatted XML Output====
+====Formatting XML Output====
 
 To generate a formatted string representation of a `marknote.Document` object, use its `toString` method.  For example:
 
