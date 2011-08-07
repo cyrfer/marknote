@@ -201,22 +201,18 @@ doc.setRootElement(rootElement);
 var truckingElement = new marknote.Element("song");
 truckingElement.setAttribute("artist", "Grateful Dead");
 truckingElement.setAttribute("title", "Truckin'");
-
 rootElement.addChildElement(truckingElement);
 
 // add Smoke on the Water
 var smokeElement = new marknote.Element("song");
 smokeElement.setAttribute("artist", "Deep Purple");
 smokeElement.setAttribute("title", "Smoke on the Water");
-
 rootElement.addChildElement(smokeElement);
 
 // add Hair of the Dog
 var dogElement = new marknote,Element("song");
-
 dogElement.setAttribute("artist", "Nazareth");
 dogElement.setAttribute("title", "Hair of the Dog");
-
 rootElement.addChildElement(dogElement);
 }}}
 
