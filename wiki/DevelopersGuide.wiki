@@ -278,7 +278,7 @@ For example, given the FPI:
 the following comprise the FPI's parts:
 
 || *FPI Part* || *Value* ||
-|| Registration || - means not registered, whereas + means registered ||
+|| Registration || - (- means not registered, whereas + means registered) ||
 || Organization || W3C ||
 || Public Text Class || DTD ||
 || Public Text Description || XHTML 1.0 Strict ||
