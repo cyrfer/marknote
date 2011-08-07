@@ -30,17 +30,11 @@ alert(doc.toString()); // show the formatted XML
 
 ===Reading XML Directly from a URL===
 
-====Introduction====
-
 _Marknote_ can easily parse XML documents from a URL within its own application context. For example, if `foo.com/myContext` has a URL, `http://foo.com/myContext/getMyXml?xmlFile=bar`, then local Javascript within `http://foo.com/myContext` can directly parse the content streamed back from that URL.
 
 _Marknote_ may also consume XML from URL's outside its own application context in one of two ways:
   * by directly accessing a URL local to its context, which in turn obtains and streams back the external XML.
   * by making an Ajax call capable of obtaining the external XML, which provides output in its response stream which can then be parsed normally as a string.
-
-====Reading the URL====
-
-As with strings, _Marknote_ will parse XML from a URL into a `marknote.Document` object.
 
 Here is an example of code that reads XML directly from a specified URL:
 
