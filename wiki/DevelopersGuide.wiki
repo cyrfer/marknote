@@ -7,7 +7,7 @@
 
 ===Introduction===
 
-_Marknote_ is a Javascript library that consists of a number of classes to manipulate XML and JSON.
+_Marknote_ is a Javascript library to manipulate XML and JSON.
 
 _Marknote_ includes a `marknote.Parser` class to parse XML from a string or a URL. Its output is a `marknote.Document` object.
 
