@@ -406,7 +406,7 @@ truckingElement.setAttribute("artist", "Grateful Dead");
 truckingElement.setAttribute("title", "Truckin'");
 
 truckingElement.setText("A story about a guy being set up like a bowling pin.");
-}}}}
+}}}
 
 ====Creating an Element Using a Qualified Name====
 
