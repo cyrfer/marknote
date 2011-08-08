@@ -868,7 +868,7 @@ var qname = new marknote.QName("art", "painting");
 // worksOfArt is an existing marknote.Element object;
 // read from it all children having the element name art:painting
 var paintings = worksOfArt.getChildElements(qname);
-}}}}
+}}}
 
 A string using the appropriate prefix syntax can also identify child elements having a qualified name. For example, the following code is equivalent to the above code:
 
