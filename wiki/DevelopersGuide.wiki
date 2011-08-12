@@ -3,11 +3,11 @@
 
 <wiki:toc max_depth="5" />
 
-==Parsing XML==
+=Parsing XML=
 
-===Introduction===
+==Reading XML from a String==
 
-_Marknote_ includes a `marknote.Parser` class to parse XML from a string or a URL. Its output is a `marknote.Document` object.
+_Marknote_ includes a `marknote.Parser` class to parse an XML string (serialized XML), or an XML stream from a URL. Its output is a `marknote.Document` object.
 
 Here is an example of parsing XML from a string into a `marknote.Document` object:
 
@@ -22,7 +22,7 @@ var doc = parser.parse(str);
 alert(doc.toString()); // show the formatted XML
 }}}
 
-===Reading XML Directly from a URL===
+==Reading XML Directly from a URL==
 
 _Marknote_ can easily parse XML documents from a URL within its own application context. For example, if `foo.com/myContext` has a URL, `http://foo.com/myContext/getMyXml?xmlFile=bar`, then local Javascript within `http://foo.com/myContext` can directly parse the content streamed back from that URL.
 
@@ -60,9 +60,9 @@ Note that when you read XML directly from a URL this way, you're reading the XML
 
 However, often it makes more sense to read XML _asynchronously_ using AJAX (see next section).
 
-===Reading XML Asynchronously Using AJAX===
+==Reading XML Asynchronously Using AJAX==
 
-====Creating the AJAX Callback Function====
+===Creating the AJAX Callback Function===
 
 _Marknote_ will also parse XML from the `responseText` object resulting from an AJAX call. To do this, define a function (called a callback) to handle the response received back from the AJAX request.
 
@@ -85,7 +85,7 @@ function myCallback(doc, params) {
 
 The first parameter of the callback function, `doc`, is a `marknote.Document` object holding the XML parsed from the URL. The second parameter of the callback function, `params`, is optional, and holds an object containing any additional information we want to pass to the callback function.
 
-====Making the AJAX Call====
+===Making the AJAX Call===
 
 Once you've got the callback function set up, then all that's left to do is fire off the AJAX request and use the callback function to process what comes back from in the AJAX response.
 
@@ -118,7 +118,7 @@ ajax.read(
 );
 }}}
 
-====Checking the Success of the AJAX Response====
+===Checking the Success of the AJAX Response===
 
 You may want to include AJAX response status checking in your AJAX callback function.
 
@@ -153,7 +153,7 @@ ajax.read(url, null, betterCallback);
 
 The `marknote.AJAX` object also includes a `getRequest` function to get the underlying XML HTTP Request (_XHR_) object, and a `getResponseText` function to get the underlying XHR response text.
 
-====Using Marknote and AJAX within a Javascript Framework====
+===Using Marknote and AJAX within a Javascript Framework===
 
 Many of the excellent Javascript frameworks that are now available, such as `jQuery` (http://jquery.com) or `Ext JS` (http://sencha.com), and a number of others, provide strong AJAX handling.  If you use such a framework, you can then of course use that framework's AJAX classes to make your AJAX call instead of using a `marknote.AJAX` object to fire off the request.  
 
@@ -161,11 +161,11 @@ The bottom line is that all AJAX calls work the same way:  you make the AJAX cal
 
 Frameworks such as `Ext JS` also include a proxy class to facilitate making AJAX calls to external URL's.
 
-==Working with XML Documents==
+=Working with XML Documents=
 
-===Creating an XML Document===
+==Creating an XML Document==
 
-====Introduction====
+===Ways to Create an XML Document===
 
 There are several ways to create a new `marknote.Document` object:
 
@@ -173,11 +173,11 @@ There are several ways to create a new `marknote.Document` object:
   * Create a new `marknote.Document` object from scratch.
   * Clone an existing `marknote.Document` object.
 
-====Reading XML into a Document====
+===Reading XML into a Document===
 
 _Marknote_ can parse XML into a `marknote.Document` object from a string or from a URL.  See [DevelopersGuide#Parsing_XML].
 
-====Creating an XML Document from Scratch====
+===Creating an XML Document from Scratch===
 
 To create a new `marknote.Document` object from scratch, simply instantiate it, and then add content to it.
 
@@ -208,7 +208,7 @@ dogElement.setAttribute("title", "Hair of the Dog");
 rootElement.addChildElement(dogElement);
 }}}
 
-====Cloning an Existing XML Document====
+===Cloning an Existing XML Document===
 
 Cloning an existing XML document creates a new deep copy, identical to the original document.
 
@@ -223,7 +223,7 @@ var doc = parser.parse(xml);
 var clonedDoc = doc.clone();
 }}}
 
-===Setting the DOCTYPE===
+==Setting the DOCTYPE==
 
 An XML document type declaration (DOCTYPE) ties an XML document to a document type definition (DTD).  A DOCTYPE, in turn, consists of several components, including the XML document root (top) element name, an availability indicator, a full public identifier (FPI), and a DTD URL.
 
@@ -308,7 +308,7 @@ var doc = new marknote.Document();
 doc.setDOCTYPE(doctype);
 }}}
 
-===Adding Processing Instructions===
+==Adding Processing Instructions==
 
 A processing instruction consists of a target, as well as a set of attributes which comprise the processing instruction data.
 
@@ -358,18 +358,18 @@ To remove a processing instruction from a `marknote.Document` object, use the `r
 doc.removeProcessingInstruction("xml-stylesheet");
 }}}
 
-===Writing XML Output===
+==Writing XML Output==
 
-====Formatting XML Output====
+===Formatting XML Output===
 
-To generate a formatted string representation of a `marknote.Document` object, use its `toString` method.  For example:
+To generate a formatted serialization of a `marknote.Document` object, use its `toString` method.  For example:
 
 {{{
 // "doc" is a marknote.Document object
 var xmlString = doc.toString();
 }}}
 
-====Controlling Output Identation====
+===Controlling Output Identation===
 
 When using the `toString` method of a `marknote.Document` object, the output formatter uses the tab character for indentation by default. To instead provide an alternate indentation, pass the indentation as a parameter to the toString method.  For example:
 
@@ -384,15 +384,15 @@ var anotherIndent = "\t\t";
 var xmlString2 = doc.toString(anotherIndent);
 }}}
 
-==Working with Elements==
+=Working with Elements=
 
-===Creating an Element===
+==Creating an Element==
 
-====Introduction====
+===Ways to Create an Element===
 
 A `marknote.Element` object represents an XML element. To create a new `marknote.Element object, you can either create one from scratch, or clone an existing one.
 
-====Creating an Element from Scratch====
+===Creating an Element from Scratch===
 
 To create a new `marknote.Element` object from scratch, simply instantiate it, and add any applicable attributes and content to it.
 
@@ -408,7 +408,7 @@ truckingElement.setAttribute("title", "Truckin'");
 truckingElement.setText("A story about a guy being set up like a bowling pin.");
 }}}
 
-====Creating an Element Using a Qualified Name====
+===Creating an Element Using a Qualified Name===
 
 A "marknote.Element` object can use a qualified name, derived from an XML namespace. For example, the following element:
 
@@ -425,7 +425,7 @@ var qname = new marknote.QName("myNamespace", "myElementName");
 var elem = new marknote.Element(qname);
 }}}
 
-====Cloning an Existing Element====
+===Cloning an Existing Element===
 
 Cloning an existing XML element creates a new deep copy, identical to the original element.
 
@@ -436,9 +436,9 @@ Here is an example of cloning an element:
 var clonedElem = elem.clone();
 }}}
 
-===Setting and Reading Attributes===
+==Setting and Reading Attributes==
 
-====Introduction====
+===Setting Attributes===
 
 An XML element may contain any number of attributes. For example, given the following XML element:
 
@@ -447,8 +447,6 @@ An XML element may contain any number of attributes. For example, given the foll
 }}}
 
 `attribute1` and `attribute2` are attributes of `element1`, with the values "foo" and "bar", respectively.
-
-====Setting Attributes====
 
 To create a `marknote.Attribute` object, instantiate it either with the name and value of the attribute as the construction parameters, or first instantiate it and then set the name and value of the attribute separately. For example, the following code creates two `marknote.Attribute` objects and then sets them to an element:
 
@@ -485,7 +483,7 @@ attributes.push(new marknote.Attribute("attribute2", "bar"));
 elem.setAttributes(attributes);
 }}}
 
-====Reading Attributes====
+===Reading Attributes===
 
 The following code reads the attribute named `attribute1` from an element:
 
@@ -503,7 +501,7 @@ This code reads an array holding all the marknote.Attribute objects for an eleme
 var attributes = elem.getAttributes();
 }}}
 
-====Removing Attributes====
+===Removing Attributes===
 
 The following code removes the attribute named `attribute1` from an element:
 
@@ -519,7 +517,7 @@ While this code removes all of the attributes from an element:
 elem.removeAllAttributes();
 }}}
 
-====Cloning Attributes====
+===Cloning Attributes===
 
 To copy a `marknote.Attribute` object, use code such as the following:
 
@@ -528,9 +526,9 @@ To copy a `marknote.Attribute` object, use code such as the following:
 var copy = attrib.clone();
 }}}
 
-====Converting an Attribute to a String Representation====
+===Converting an Attribute to a String Representation===
 
-To obtain a string representation of a `marknote.Attribute` object, use the `toString` method; for example:
+To serialize a `marknote.Attribute` object, use the `toString` method; for example:
 
 {{{
 // attrib is a marknote.Attribute object
@@ -541,13 +539,11 @@ The resulting string will be of the form:
 
 `attributeName="attributeValue"`
 
-===Setting and Reading Content===
+==Setting and Reading Content==
 
-====Introduction====
+===Adding Content===
 
 An element may contain various types of content, including text content, a computer data (CDATA) section, child elements, or comments.
-
-====Adding Content====
 
 The following example illustrates management of content for an element:
 
@@ -582,7 +578,7 @@ The result of the above code will be a `marknote.Element` object representing th
 </worksOfArt>
 }}}
 
-====Removing Content====
+===Removing Content===
 
 The following example removes content at a specific position within an element's contents:
 
@@ -592,7 +588,7 @@ The following example removes content at a specific position within an element's
 worksOfArt.removeContent(1);
 }}}
 
-====Reading Content====
+===Reading Content===
 The following code retrieves an array of all content for an element:
 
 {{{
@@ -613,9 +609,9 @@ To retrieve content at a specific position within the an element's contents, use
 var content = worksOfArt.getContentAt(1);
 }}}
 
-===Setting and Reading Text and CDATA Text===
+==Setting and Reading Text and CDATA Text==
 
-====Introduction====
+===Element Text Overview===
 
 In addition to the content-handling methods outlined above, the `marknote.Element ` class includes additional methods specific to managing text and CDATA text.
 
@@ -631,7 +627,7 @@ Elements often, but don't necessarily, include text content. For example, given 
 <house type="frame" stories="2" rooms="7" />
 }}}
 
-====Setting Text Content====
+===Setting Text Content===
 
 The following code sets text content to an element:
 
@@ -642,7 +638,7 @@ lyrics.setText("Set up, like a bowling pin, Knocked down, it gets to wearin' thi
 
 Setting the text of an element using `setText` results in all content first getting removed from the element (including child elements, except comments), before the text gets set.  
 
-====Setting CDATA Content====
+===Setting CDATA Content===
 
 The following code sets CDATA text content to an element:
 
@@ -653,7 +649,7 @@ lyrics.setCDATAText("Set up, like a bowling pin, Knocked down, it gets to wearin
 
 Setting the CDATA text of an element using setCDATAText results in all content first getting removed from the element (including child elements), except comments, before the text gets set.
 
-====Removing Text====
+===Removing Text===
 
 The following code removes all text (including all text and CDATA sections) attached directly to an element:
 
@@ -662,7 +658,7 @@ The following code removes all text (including all text and CDATA sections) atta
 lyrics.removeText();
 }}}
 
-====Reading Text Content====
+===Reading Text Content===
 
 The following code reads the text content, or the CDATA text (if applicable), of an element.
 
@@ -673,7 +669,7 @@ var text = lyrics.getText();
 
 If the total of `marknote.Text` and `marknote.CDATA` objects within the element's content exceeds one, the above code gets the concatenation of all of the `marknote.Text` and `marknote.CDATA` text within this element's content.
 
-===Character Entity Reference Conversion===
+==Character Entity Reference Conversion==
 
 _Marknote_ automatically performs character entity reference encoding and decoding when setting or reading text content for an element (this does not apply to CDATA text). For example, given the string `4<5 `, _Marknote_ will encode this value to `4&lt;5 ` when setting it as the element's text content, and will automatically decode it back to `4<5 ` when reading the text content back out.
 
@@ -691,13 +687,11 @@ alert(elem.toString());
 alert(elem.getText());
 }}}
 
-===Setting and Reading Comment Text===
+==Setting and Reading Comment Text==
 
-====Introduction====
+===Setting Comment Text===
 
 In addition to using the content-handling methods outlined previously, the `marknote.Element` class includes additional methods specific to managing comment text.
-
-====Setting Comment Text====
 
 The following code first removes all comments attached directly to an element, and then adds a new comment with the given text to the element:
 
@@ -706,7 +700,7 @@ The following code first removes all comments attached directly to an element, a
 elem.setCommentText("This is a comment");
 }}}
 
-====Removing Comments====
+===Removing Comments===
 
 The following code removes all comments attached directly to an element:
 
@@ -715,7 +709,7 @@ The following code removes all comments attached directly to an element:
 elem.removeComments();
 }}}
 
-====Reading Comment Text====
+===Reading Comment Text===
 
 The following code gets comment text for an element (if the element contains more than one `marknote.Comment` object, it returns the concatenation of all the comment text):
 
@@ -724,15 +718,15 @@ The following code gets comment text for an element (if the element contains mor
 var commentText = elem.getCommentText();
 }}}
 
-===Working with Child Elements===
+==Working with Child Elements==
 
-====Introduction====
+===Child Element Overview===
 
 In addition to using the content-handling methods outlined previously, the `marknote.Element` class includes additional methods specific to managing child elements.
 
 An element may contain child elements, which in turn may contain other child elements. The XML document itself contains a root element which acts as the top parent to all child elements in the document tree.
 
-====Setting the Root Element====
+===Setting the Root Element===
 
 To assign an element as the root element of a document, use code such as the following:
 
@@ -743,7 +737,7 @@ var songs = new marknote.Element("songs");
 doc.setRootElement(songs);
 }}}
 
-====Adding Child Elements====
+===Adding Child Elements===
 
 To add child elements to a parent element, use code such as the following:
 
@@ -764,7 +758,7 @@ songs.addChildElement(firstSong);
 songs.addChildElement(secondSong);
 }}}
 
-====Removing Child Elements====
+===Removing Child Elements===
 
 The following code removes all the child elements from a parent element:
 
@@ -799,7 +793,7 @@ Finally, this example removes a child element at the given position among the ch
 parent.removeChildElementAt(1);
 }}}
 
-====Reading Child Elements====
+===Reading Child Elements===
 
 To read an array of all child elements of a given parent element, use the `getChildElements` method; for example:
 
