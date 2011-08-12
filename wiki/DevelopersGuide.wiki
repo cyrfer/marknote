@@ -1,7 +1,7 @@
 #summary Marknote Developer's Guide
 =Marknote Developer's Guide=
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="3" />
 
 =Parsing XML=
 
