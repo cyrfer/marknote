@@ -1,5 +1,3 @@
-#sidebar Contents
-
 #summary Marknote Developer's Guide
 =Marknote Developer's Guide=
 
