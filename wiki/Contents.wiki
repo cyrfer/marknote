@@ -1,4 +1,3 @@
 * [DevelopersGuide Developer's Guide]
     * [DevelopersGuide#Parsing_XML Parsing XML]
-        * [DevelopersGuide#Reading_XML_from_a_String From a String]
-
+        * [DevelopersGuide#Reading_XML_from_a_String Reading XML From a String]
