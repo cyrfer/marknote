@@ -1,11 +1,9 @@
 #summary Marknote Developer's Guide
 =Marknote Developer's Guide=
 
-<wiki:toc max_depth="4" />
-
 ==Parsing XML==
 
-===Reading XML from a String===
+===Reading XML From a String===
 
 _Marknote_ includes a `marknote.Parser` class to parse an XML string (serialized XML), or an XML stream from a URL. Its output is a `marknote.Document` object.
 
