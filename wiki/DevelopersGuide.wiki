@@ -180,7 +180,7 @@ There are several ways to create a new `marknote.Document` object:
 
 ====Reading XML into a Document====
 
-_Marknote_ can parse XML into a `marknote.Document` object from a string or from a URL.  See [DevelopersGuide#Parsing_XML].
+_Marknote_ can parse XML into a `marknote.Document` object from a string or from a URL.  See [DevelopersGuide#Parsing_XML Parsing XML].
 
 ====Creating an XML Document from Scratch====
 
