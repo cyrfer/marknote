@@ -5,3 +5,4 @@
         * [DevelopersGuide#Reading_XML_Asynchronously_Using_AJAX Using AJAX]
             * [DevelopersGuide#Creating_the_AJAX_Callback_Function Creating the Callback Function]
             * [DevelopersGuide#Making_the_AJAX_Call Making the AJAX Call]
+            * [DevelopersGuide#Using_Marknote_and_AJAX_within_a_Javascript_Framework With a JS Framework]
