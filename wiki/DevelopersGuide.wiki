@@ -22,18 +22,21 @@ var doc = parser.parse(str);
 alert(doc.toString()); // show the formatted XML
 }}}
 
-===Reading XML Directly from a URL===
+===Reading XML from a URL===
 
-_Marknote_ can easily parse XML documents from a URL within its own application context. For example, if `foo.com/myContext` has a URL, `http://foo.com/myContext/getMyXml?xmlFile=bar`, then local Javascript within `http://foo.com/myContext` can directly parse the content streamed back from that URL.
+_Marknote_ can easily parse XML documents from a URL within its own application context. For example, if you have a project, `http://foo.com`, and you have an XML file at `http://foo.com\myFile.xml`, then you can use _Marknote_ to parse the XML from JavaScript within the `http://foo.com` project.
 
-_Marknote_ may also consume XML from URL's outside its own application context in one of two ways:
-  * by directly accessing a URL local to its context, which in turn obtains and streams back the external XML.
-  * by making an Ajax call capable of obtaining the external XML, which provides output in its response stream which can then be parsed normally as a string.
+If you want to use _Marknote_ to access an XML at a URL external to the JavaScript's domain, there are at least two ways to do that also:
+
+* Use a local URL to read the external XML and stream it back.
+* Using an JavaScript HTTP proxy. One way to do this is by combining Marknote with a third party JavaScript library such as Ext JS.
 
 Here is an example of code that reads XML directly from a specified URL:
 
 {{{
-var url = "movies.xml";
+# if your domain is foo.com, then the below url points to 
+# http://foo.com/myXmlFiles/movies.xml
+var url = "myXmlFiles/movies.xml";
 var parser = new marknote.Parser();
 
 // optional HTTP request parameters
@@ -56,9 +59,9 @@ alert("Request status is: " + parser.getXHRStatus() +
 
 }}}
 
-Note that when you read XML directly from a URL this way, you're reading the XML _synchronously_, meaning that Javascript will wait until the `parseURL` command completes before processing its next instruction. The nice thing about this is that you don't need to make an AJAX call, and you don't need to code a callback function.
+Note that, unlike an AJAX call, when you read XML directly from a URL this way, you're reading the XML _synchronously_, meaning that Javascript will wait until the `parseURL` command completes before processing its next instruction. The nice thing about this is that you don't need to make an AJAX call, and there you don't need to code a callback function.
 
-However, often it makes more sense to read XML _asynchronously_ using AJAX (see next section).
+In those situations where it makes makes more sense to read XML _asynchronously_ using AJAX, refer to the next section.
 
 ===Reading XML Asynchronously Using AJAX===
 
