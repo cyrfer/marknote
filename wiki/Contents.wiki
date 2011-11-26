@@ -2,4 +2,5 @@
     * [DevelopersGuide#Parsing_XML Parsing XML]
         * [DevelopersGuide#Reading_XML_From_a_String Reading XML From a String]
         * [DevelopersGuide#Reading_XML_Directly_From_a_URL Reading XML Directly From a URL]
+        * [DevelopersGuide#Reading_XML_Asynchronously_Using_AJAX Reading XML Asynchronously Using AJAX]
             * [DevelopersGuide#Creating_the_AJAX_Callback_Function Creating the AJAX Callback Function]
