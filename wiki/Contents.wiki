@@ -1,2 +1,2 @@
 * [DevelopersGuide Developer's Guide]
-    * [ParsingXML Parsing XML]
+    * [DevelopersGuide#Parsing_XML Parsing XML]
