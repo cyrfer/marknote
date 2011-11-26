@@ -1,4 +1,4 @@
 * [DevelopersGuide Developer's Guide]
     * [DevelopersGuide#Parsing_XML Parsing XML]
-       *[DevelopersGuide#Reading_XML_Directly_From_a_URL Reading XML Directly From a URL]
+       *[DevelopersGuide#ParsingXML#Reading_XML_Directly_From_a_URL Reading XML Directly From a URL]
        *[DevelopersGuide#Reading_XML_Asynchronously_Using_AJAX Reading XML Asynchronously Using AJAX]
