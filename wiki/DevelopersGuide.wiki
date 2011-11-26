@@ -64,9 +64,9 @@ In those situations where it makes makes more sense to read XML _asynchronously_
 
 ====Creating the AJAX Callback Function====
 
-To parse XML from the `responseText` object resulting from an AJAX call, first define a function (called a callback) to handle the response received back from the AJAX request.
+To parse XML from the `responseText` object resulting from an AJAX call, first define a callback function to handle the response received back from the AJAX request.
 
-Here is an example of a such callback function:
+Here's an example:
 
 {{{
 function myCallback(doc, params) {
