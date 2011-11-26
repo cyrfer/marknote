@@ -64,15 +64,19 @@ In those situations where it makes makes more sense to read XML _asynchronously_
 
 ====Creating the AJAX Callback Function====
 
-_Marknote_ will also parse XML from the `responseText` object resulting from an AJAX call. To do this, define a function (called a callback) to handle the response received back from the AJAX request.
+To parse XML from the `responseText` object resulting from an AJAX call, first define a function (called a callback) to handle the response received back from the AJAX request.
 
 Here is an example of a such callback function:
 
 {{{
 function myCallback(doc, params) {
+    
     var pretty = doc.toString();
+    
     alert(pretty); // alert out the formatted XML
+    
     var status = params.status;
+    
     if (status === 'foo') {
         // do something
     } else if (status === 'bar') {
@@ -80,6 +84,7 @@ function myCallback(doc, params) {
     } else {
         // do something else 
     }
+
 }
 }}}
 
