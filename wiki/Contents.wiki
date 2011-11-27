@@ -36,7 +36,6 @@
         * [DevelopersGuide#Setting_and_Reading_Text_and_CDATA_Text Setting and Reading Text]
             * [DevelopersGuide#Element_Text_Overview Element Text Overview]
             * [DevelopersGuide#Setting_Text_Content Setting Text Content]
-            * [DevelopersGuide#Setting_Text_Content Setting Text Content]
             * [DevelopersGuide#Setting_CDATA_Content Setting CDATA Content]
             * [DevelopersGuide#Removing_Text Removing Text Content]
             * [DevelopersGuide#Reading_Text_Content Reading Text Content]
