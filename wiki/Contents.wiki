@@ -7,3 +7,8 @@
             * [DevelopersGuide#Making_the_AJAX_Call Making the AJAX Call]
             * [DevelopersGuide#Using_Marknote_and_AJAX_within_a_Javascript_Framework AJAX With a JS Framework]
     * [DevelopersGuide#Working_with_XML_Documents Working with XML Documents]
+        * [DevelopersGuide#Creating_an_XML_Document Creating an XML Document]
+            * [DevelopersGuide#Ways_to_Create_an_XML_Document Ways to Create an XML Document]
+            * [DevelopersGuide#Reading_XML_into_a_Document Ways to Create an XML Document]
+            * [DevelopersGuide#Creating_an_XML_Document_from_Scratch Creating an XML Document from Scratch]
+            * [DevelopersGuide#Cloning_an_Existing_XML_Document Cloning an Existing XML Document]
