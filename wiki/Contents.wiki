@@ -14,3 +14,6 @@
             * [DevelopersGuide#Cloning_an_Existing_XML_Document Cloning an XML Doc]
         * [DevelopersGuide#Setting_the_DOCTYPE Setting the DOCTYPE]
         * [DevelopersGuide#Adding_Processing_Instructions Adding Processing Instructions]
+        * [DevelopersGuide#Writing_XML_Output Writing XML Output]
+            * [DevelopersGuide#Formatting_XML_Output Formatting XML Output]
+            * [DevelopersGuide#Controlling_Output_Identation Controlling Output Identation]
