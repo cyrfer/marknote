@@ -232,13 +232,13 @@ var clonedDoc = doc.clone();
 
 An XML document type declaration (DOCTYPE) ties an XML document to a document type definition (DTD).  A DOCTYPE, in turn, consists of several components, including the XML document root (top) element name, an availability indicator, a full public identifier (FPI), and a DTD URL.
 
-The simplest way to create a `marknote.DOCTYPE` object is to pass in a string representation of the full DOCTYPE element (including the <! and > tag characters) into its object constructor. For example, the code below creates a `marknote.DOCTYPE` object from the string:
+The simplest way to create a `marknote.DOCTYPE` object is to pass in a string representation of the full DOCTYPE element (including the <! and > tag characters) into its object constructor. For example, this DOCTYPE:
 
 {{{
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 }}}
 
-and then sets the DOCTYPE to a `marknote.Document` object:
+... this creates a `marknote.Document` object and sets it to  a `marknote.Document` object:
 
 {{{
 var doctype = 
