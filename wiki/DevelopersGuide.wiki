@@ -676,7 +676,7 @@ If the total of `marknote.Text` and `marknote.CDATA` objects within the element'
 
 ===Character Entity Reference Conversion===
 
-_Marknote_ automatically performs character entity reference encoding and decoding when setting or reading text content for an element (this does not apply to CDATA text). For example, given the string `4<5 `, _Marknote_ will encode this value to `4&lt;5 ` when setting it as the element's text content, and will automatically decode it back to `4<5 ` when reading the text content back out.
+_Marknote_ automatically performs character entity reference encoding and decoding when setting or reading text content for an element (this does not apply to CDATA text, since CDATA text is read and written literally). For example, given the string `4<5`, _Marknote_ will encode this value to `4&lt;5` when setting it as the element's text content, and will automatically decode it back to `4<5` when reading the text content back out.
 
 For example, this code sets and then reads text content containing a character entity reference:
 
