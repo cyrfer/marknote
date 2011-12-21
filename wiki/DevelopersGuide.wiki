@@ -77,6 +77,8 @@ or, like this, if the request succeeded:
 Request status is: 200 and the status text is: OK
 }}}
 
+An HTTP status code of 200 indicates success.  For more information on HTTP status codes, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html.
+
 Note that, unlike an asynchronous AJAX call, when you read XML directly from a URL this way, you're reading the XML _synchronously_, meaning that Javascript will wait until the `parseURL` command completes before processing its next instruction. Since the command is synchronous, you don't need to code a callback function (as you would with a standard AJAX request) to process the XML that comes back. 
 
 In those situations where it makes makes more sense to read XML _asynchronously_ using AJAX, refer to the next section.
