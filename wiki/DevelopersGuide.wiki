@@ -22,6 +22,15 @@ var doc = parser.parse(str);
 alert(doc.toString()); // show the formatted XML
 }}}
 
+The code above produces the following output:
+
+{{{
+<books>
+	<book title="A Tale of Two Cities" />
+	<book title="1984" />
+</books>
+}}}
+
 ===Reading XML Directly From a URL===
 
 _Marknote_ can easily parse XML documents from a URL within its own application context. For example, if you have a project, `http://foo.com`, and you have an XML file at `http://foo.com/myFile.xml`, then you can use _Marknote_ to parse the XML from !JavaScript within the `http://foo.com` project.
