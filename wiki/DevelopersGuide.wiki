@@ -65,13 +65,13 @@ alert("Request status is: " + parser.getXHRStatus() +
     " and the status text is: " + parser.getXHRStatusText());
 }}}
 
-Which will produce output such as the following, if the result failed:
+Which will produce output such as the following, if the request fails:
 
 {{{
 Request status is: 404 and the status text is: Not Found
 }}}
 
-or, like this, if the request succeeded:
+or, like this, if the request succeeds:
 
 {{{
 Request status is: 200 and the status text is: OK
