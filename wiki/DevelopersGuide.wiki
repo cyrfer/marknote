@@ -161,7 +161,7 @@ function betterCallback(doc, params) {
     // "this" is the marknote.AJAX object
     var ajaxObj = this;
 
-    alert("status code is: " + ajaxObj.getStatus() + " and status text is: " + ajaxObj.getStatusText());
+    alert("HTTP status code is: " + ajaxObj.getStatus() + " and the HTTP status text is: " + ajaxObj.getStatusText());
 
     // branch code here depending on the status, as needed
 
@@ -177,6 +177,21 @@ function betterCallback(doc, params) {
 var url = "movies.xml";
 var ajax = new marknote.AJAX();
 ajax.read(url, null, betterCallback);
+}}}
+
+Assuming this code parses the XML successfully, it will produce this output:
+
+{{{
+HTTP status code is: 200 and the HTTP status text is: OK
+}}}
+
+and then the serialized XML, such as:
+
+{{{
+<movies>
+	<movie title="The Seventh Seal" />
+	<movie title="The Terminator" />
+</movies>
 }}}
 
 The `marknote.AJAX` object also includes a `getRequest` function to get the underlying XML HTTP Request (_XHR_) object, and a `getResponseText` function to get the underlying XHR response text.
