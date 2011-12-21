@@ -185,7 +185,7 @@ Assuming this code parses the XML successfully, it will produce this output:
 HTTP status code is: 200 and the HTTP status text is: OK
 }}}
 
-and then the serialized XML, such as:
+and then the formatted XML, such as:
 
 {{{
 <movies>
