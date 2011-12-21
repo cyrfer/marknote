@@ -227,7 +227,7 @@ To create a new `marknote.Document` object from scratch, simply instantiate it, 
 Here is an example of code that creates a new `marknote.Document` object, and then adds elements and attributes to the document:
 
 {{{
-// create the document, attach the root element
+//create the document, attach the root element
 var doc = new marknote.Document();
 var rootElement = new marknote.Element("songs");
 doc.setRootElement(rootElement);
@@ -245,10 +245,20 @@ smokeElement.setAttribute("title", "Smoke on the Water");
 rootElement.addChildElement(smokeElement);
 
 // add Hair of the Dog
-var dogElement = new marknote,Element("song");
+var dogElement = new marknote.Element("song");
 dogElement.setAttribute("artist", "Nazareth");
 dogElement.setAttribute("title", "Hair of the Dog");
 rootElement.addChildElement(dogElement);
+}}}
+
+The code above produces this XML document:
+
+{{{
+<songs>
+	<song artist="Grateful Dead" title="Truckin'" />
+	<song artist="Deep Purple" title="Smoke on the Water" />
+	<song artist="Nazareth" title="Hair of the Dog" />
+</songs>
 }}}
 
 ====Cloning an Existing XML Document====
