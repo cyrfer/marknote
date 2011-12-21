@@ -40,8 +40,7 @@ If you want to use _Marknote_ to access an XML at a URL external to the !JavaScr
 Here is an example of code that reads XML directly from a specified URL:
 
 {{{
-# if your domain is foo.com, then the below url points to 
-# http://foo.com/myXmlFiles/movies.xml
+# use a relative URL
 var url = "myXmlFiles/movies.xml";
 var parser = new marknote.Parser();
 
@@ -58,14 +57,27 @@ var doc = parser.parseURL(url,urlParams,"GET");
 
 // alert out the parsed document
 alert(doc.toString());
+}}}
 
+{{{
 // check the status
 alert("Request status is: " + parser.getXHRStatus() +
     " and the status text is: " + parser.getXHRStatusText());
-
 }}}
 
-Note that, unlike an asynchronous AJAX call, when you read XML directly from a URL this way, you're reading the XML _synchronously_, meaning that Javascript will wait until the `parseURL` command completes before processing its next instruction. The nice thing about this is that since the command is synchronous, you don't need to code an AJAX callback function to process the XML that comes back. 
+Which will produce output such as the following, if the result failed:
+
+{{{
+Request status is: 404 and the status text is: Not Found
+}}}
+
+or, like this, if the request succeeded:
+
+{{{
+Request status is: 200 and the status text is: OK
+}}}
+
+Note that, unlike an asynchronous AJAX call, when you read XML directly from a URL this way, you're reading the XML _synchronously_, meaning that Javascript will wait until the `parseURL` command completes before processing its next instruction. Since the command is synchronous, you don't need to code a callback function (as you would with a standard AJAX request) to process the XML that comes back. 
 
 In those situations where it makes makes more sense to read XML _asynchronously_ using AJAX, refer to the next section.
 
