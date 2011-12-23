@@ -364,7 +364,11 @@ the following comprise the FPI's parts:
 The following example sets the DOCTYPE for an XML document from its parts:
 
 {{{
-// top element, availability
+var parser = new marknote.Parser();
+var xml = '<songs><song title="Smoke on the Water"/></songs>';
+var doc = parser.parse(xml);
+
+//top element, availability
 var topElement = "html";
 var availability = "PUBLIC";
 
@@ -386,12 +390,23 @@ var FPI = new marknote.FPI(
 var URL = "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
 // create the DOCTYPE
-var doctype = new marknote.DOCTYPE(topElement,availability,FPI,URL);
+var doctype = new marknote.DOCTYPE(topElement, availability, FPI, URL);
 
-// set the DOCTYPE to a new XML document
-var doc = new marknote.Document();
+// set the DOCTYPE to the XML document
 doc.setDOCTYPE(doctype);
+
+alert(doc.toString());
 }}}
+
+which again produces:
+
+{{{
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<songs>
+	<song title="Smoke on the Water" />
+</songs>
+}}}
+
 
 ===Adding Processing Instructions===
 
