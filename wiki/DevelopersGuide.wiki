@@ -368,7 +368,7 @@ var parser = new marknote.Parser();
 var xml = '<songs><song title="Smoke on the Water"/></songs>';
 var doc = parser.parse(xml);
 
-//top element, availability
+// top element, availability
 var topElement = "html";
 var availability = "PUBLIC";
 
