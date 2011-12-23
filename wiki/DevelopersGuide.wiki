@@ -117,7 +117,7 @@ The first parameter of the callback function, `doc`, is a `marknote.Document` ob
 
 ====Making the AJAX Call====
 
-Once you've got the callback function set up, then all that's left to do is fire off the AJAX request and use the callback function to process what comes back from in the AJAX response.
+Once you've got the callback function set up, then all that's left to do is to fire off the AJAX request and use the callback function to process what comes back in the AJAX response.
 
 Here is an example of code that reads XML asynchronously from a specified URL, and then fires the callback function shown above to process the resulting XML:
 
