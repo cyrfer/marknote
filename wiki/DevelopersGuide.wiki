@@ -97,11 +97,11 @@ function myCallback(doc, params) {
     
     alert(pretty); // alert out the formatted XML
     
-    var fooParamValue = params.foo;
+    var callbackParamValue = params.foo;
     
-    if (fooParamValue === 'foo') {
+    if (callbackParamValue === 'foo') {
         // do something
-    } else if (fooParamValue === 'bar') {
+    } else if (callbackParamValue === 'bar') {
         // do something else 
     } else {
         // do something else 
