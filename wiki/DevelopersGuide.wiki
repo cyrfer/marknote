@@ -40,7 +40,6 @@ If you want to use _Marknote_ to access an XML at a URL external to the !JavaScr
 Here is an example of code that reads XML directly from a specified URL:
 
 {{{
-# use a relative URL
 var url = "myXmlFiles/movies.xml";
 var parser = new marknote.Parser();
 
