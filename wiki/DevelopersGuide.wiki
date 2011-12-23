@@ -304,16 +304,30 @@ The simplest way to create a `marknote.DOCTYPE` object is to pass in a string re
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 }}}
 
-... this creates a `marknote.Document` object and sets it to  a `marknote.Document` object:
+... this sets a `marknote.DOCTYPE` to a `marknote.Document` object:
 
 {{{
+var parser = new marknote.Parser();
+var xml = '<songs><song title="Smoke on the Water"/></songs>';
+var doc = parser.parse(xml);
+
 var doctype = 
     new marknote.DOCTYPE(
         '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
     );
 
-// "doc" is a marknote.Document object
 doc.setDOCTYPE(doctype);
+
+alert(doc.toString());
+}}}
+
+The code above produces this output:
+
+{{{
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<songs>
+	<song title="Smoke on the Water" />
+</songs>
 }}}
 
 You can also set a DOCTYPE from its individual parts. For example, given the DOCTYPE:
