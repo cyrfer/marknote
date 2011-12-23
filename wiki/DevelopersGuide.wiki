@@ -145,6 +145,15 @@ ajax.read(
 );
 }}}
 
+The code above produces output such as:
+
+{{{
+<movies>
+	<movie title="The Seventh Seal" />
+	<movie title="The Terminator" />
+</movies>
+}}}
+
 ====Checking the Success of the AJAX Response====
 
 You may want to include AJAX response status checking in your AJAX callback function.
