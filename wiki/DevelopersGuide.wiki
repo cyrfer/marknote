@@ -33,9 +33,7 @@ The code above produces the following output:
 
 ===Reading XML Directly From a URL===
 
-_Marknote_ can easily parse XML documents from a URL within its own application context. For example, if you have a project, `http://foo.com`, and you have an XML file at `http://foo.com/myFile.xml`, then you can use _Marknote_ to parse the XML from !JavaScript within the `http://foo.com` project.
-
-If you want to use _Marknote_ to access an XML at a URL external to the !JavaScript's HTTP domain, one way to do that is by pointing to a local URL which streams back the external XML.
+_Marknote_ can easily parse XML documents from a URL within its own HTTP domain (if you want to access an XML at a URL external to an application's HTTP domain, one way to do that is by pointing to a local URL which streams back the external XML).
 
 Here is an example of code that reads XML directly from a specified URL:
 
