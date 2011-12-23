@@ -378,7 +378,7 @@ var organization = "W3C";
 var publicTextClass = "DTD";
 var publicTextDescription = "XHTML 1.0 Strict";
 var publicTextLanguage = "EN";
-var FPI = new marknote.FPI(
+var fpi = new marknote.FPI(
     registration,
     organization,
     publicTextClass,
@@ -387,10 +387,10 @@ var FPI = new marknote.FPI(
 );
 
 // the DTD URL
-var URL = "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
+var url = "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
 // create the DOCTYPE
-var doctype = new marknote.DOCTYPE(topElement, availability, FPI, URL);
+var doctype = new marknote.DOCTYPE(topElement, availability, fpi, url);
 
 // set the DOCTYPE to the XML document
 doc.setDOCTYPE(doctype);
