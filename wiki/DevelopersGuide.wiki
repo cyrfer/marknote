@@ -24,12 +24,12 @@ alert(doc.toString()); // show the formatted XML
 
 The code above produces the following output:
 
-{{{
+<code language="xml">
 <books>
 	<book title="A Tale of Two Cities" />
 	<book title="1984" />
 </books>
-}}}
+</code>
 
 ===Reading XML Directly From a URL===
 
