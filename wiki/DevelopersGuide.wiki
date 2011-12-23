@@ -282,6 +282,16 @@ var doc = parser.parse(xml);
 
 // clone the first document
 var clonedDoc = doc.clone();
+
+alert(clonedDoc.toString());
+}}}
+
+which produces this output:
+
+{{{
+<songs>
+	<song title="Smoke on the Water" />
+</songs>
 }}}
 
 ===Setting the DOCTYPE===
