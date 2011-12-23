@@ -59,13 +59,15 @@ var doc = parser.parseURL(url,urlParams,"GET");
 alert(doc.toString());
 }}}
 
+While this code checks the status of the request:
+
 {{{
 // check the status
 alert("Request status is: " + parser.getXHRStatus() +
     " and the status text is: " + parser.getXHRStatusText());
 }}}
 
-Which will produce output such as the following, if the request fails:
+which will produce output such as the following, if the request fails:
 
 {{{
 Request status is: 404 and the status text is: Not Found
