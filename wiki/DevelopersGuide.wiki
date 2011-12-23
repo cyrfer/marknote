@@ -56,7 +56,7 @@ var doc = parser.parseURL(url, urlParams, "GET");
 alert(doc.toString());
 }}}
 
-While this code checks the status of the request:
+while this code checks the status of the request:
 
 {{{
 // check the status
