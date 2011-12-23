@@ -52,7 +52,7 @@ var urlParams = {
 
 // parse the file
 // (for POST requests, use "POST" instead of "GET")
-var doc = parser.parseURL(url,urlParams,"GET");
+var doc = parser.parseURL(url, urlParams, "GET");
 
 // alert out the parsed document
 alert(doc.toString());
