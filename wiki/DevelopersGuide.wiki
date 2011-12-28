@@ -423,13 +423,26 @@ Taking the above example, `xml` is the processing instruction target, while `enc
 To create a `marknote.ProcesssingInstruction` object with the default target of `xml` and the default data of `encoding="UTF-8"`, simply instantiate the object; for example:
 
 {{{
-// create a default processing instruction of
-// <?xml version="1.0" encoding="UTF-8" ?>
+var parser = new marknote.Parser();
+var xml = '<songs><song title="Smoke on the Water"/></songs>';
+var doc = parser.parse(xml);
+
+//create a default processing instruction of
 var pi = new marknote.ProcessingInstruction();
 
-// add the processing instruction to a document
-var doc = new marknote.Document();
+//add the processing instruction to the document
 doc.addProcessingInstruction(pi);
+
+alert(doc.toString());
+}}}
+
+The code above produces this output:
+
+{{{
+<?xml version="1.0" encoding="UTF-8" ?>
+<songs>
+	<song title="Smoke on the Water" />
+</songs>
 }}}
 
 To add a processing instruction other than the default xml processing instruction, specify the target and data (attributes) for the processing instruction.  For example, to add the processing instruction:
