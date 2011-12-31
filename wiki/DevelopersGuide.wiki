@@ -544,7 +544,7 @@ truckingElement.setText("A story about a guy being set up like a bowling pin.");
 alert(truckingElement);
 }}}
 
-and produces this output:
+The code above produces this output:
 
 {{{
 <song artist="Grateful Dead" title="Truckin'">A story about a guy being set up like a bowling pin.</song>
