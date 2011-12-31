@@ -235,7 +235,7 @@ To create a new `marknote.Document` object from scratch, simply instantiate it, 
 Here is an example of code that creates a new `marknote.Document` object, and then adds elements and attributes to the document:
 
 {{{
-//create the document, attach the root element
+// create the document, attach the root element
 var doc = new marknote.Document();
 var rootElement = new marknote.Element("songs");
 doc.setRootElement(rootElement);
