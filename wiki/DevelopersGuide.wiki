@@ -487,14 +487,36 @@ var xmlString = doc.toString();
 When using the `toString` method of a `marknote.Document` object, the output formatter uses the tab character for indentation by default. To instead provide an alternate indentation, pass the indentation as a parameter to the toString method.  For example:
 
 {{{
-// "doc" is a marknote.Document object.
-// use three spaces as the indent.
+var parser = new marknote.Parser();
+var xml = '<songs><song title="Smoke on the Water"/></songs>';
+var doc = parser.parse(xml);
+
 var indent = "   ";
 var xmlString = doc.toString(indent);
+
+alert(xmlString);
 
 // now use two tabs as the indent instead
 var anotherIndent = "\t\t";
 var xmlString2 = doc.toString(anotherIndent);
+
+alert(xmlString2);
+}}}
+
+The code above produces:
+
+{{{
+<songs>
+   <song title="Smoke on the Water" />
+</songs>
+}}}
+
+and:
+
+{{{
+<songs>
+		<song title="Smoke on the Water" />
+</songs>
 }}}
 
 ==Working with Elements==
