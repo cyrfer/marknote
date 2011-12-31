@@ -407,7 +407,6 @@ which again produces:
 </songs>
 }}}
 
-
 ===Adding Processing Instructions===
 
 A processing instruction consists of a target, as well as a set of attributes which comprise the processing instruction data.
@@ -565,6 +564,8 @@ To create a qualified name, use a `marknote.QName` object, passing in the prefix
 {{{
 var qname = new marknote.QName("myNamespace", "myElementName");
 var elem = new marknote.Element(qname);
+
+elem.setText("here is some content");
 }}}
 
 ====Cloning an Existing Element====
