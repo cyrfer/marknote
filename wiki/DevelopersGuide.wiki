@@ -572,11 +572,23 @@ elem.setText("here is some content");
 
 Cloning an existing XML element creates a new deep copy, identical to the original element.
 
-Here is an example of cloning an element:
+For example, this code:
 
 {{{
-// "elem" is an existing marknote.Element object
+var qname = new marknote.QName("myNamespace", "myElementName");
+var elem = new marknote.Element(qname);
+elem.setText("here is some content");
+
 var clonedElem = elem.clone();
+clonedElem.setAttribute("color", "orange");
+
+alert(clonedElem);
+}}}
+
+produces this output:
+
+{{{
+<myNamespace:myElementName color="orange">here is some content</myNamespace:myElementName>
 }}}
 
 ===Setting and Reading Attributes===
