@@ -534,13 +534,20 @@ To create a new `marknote.Element` object from scratch, simply instantiate it, a
 Here is an example of code that creates a new `marknote.Element` object, and then adds attributes and text content to it:
 
 {{{
-// create the Truckin' element
 var truckingElement = new marknote.Element("song");
 
 truckingElement.setAttribute("artist", "Grateful Dead");
 truckingElement.setAttribute("title", "Truckin'");
 
 truckingElement.setText("A story about a guy being set up like a bowling pin.");
+
+alert(truckingElement);
+}}}
+
+and produces this output:
+
+{{{
+<song artist="Grateful Dead" title="Truckin'">A story about a guy being set up like a bowling pin.</song>
 }}}
 
 ====Creating an Element Using a Qualified Name====
