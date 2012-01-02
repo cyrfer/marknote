@@ -638,7 +638,7 @@ var elem = new marknote.Element("element1");
 // set an array of attributes
 elem.setAttributes(attributes);
 
-// set a single attribute
+// set one additional attribute
 elem.setAttribute("color", "orange");
 
 alert(elem.toString());
