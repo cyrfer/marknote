@@ -629,9 +629,10 @@ and produces this output:
 This code first sets an element's attributes using an array of `marknote.Attribute` objects, and then adds one more additional attribute:
 
 {{{
-var attributes = new Array();
-attributes.push(new marknote.Attribute("attribute1", "foo"));
-attributes.push(new marknote.Attribute("attribute2", "bar"));
+var attributes = [
+    new marknote.Attribute("attribute1", "foo"),
+    new marknote.Attribute("attribute2", "bar")
+];
 
 var elem = new marknote.Element("element1");
 
