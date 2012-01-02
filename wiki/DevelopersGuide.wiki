@@ -575,12 +575,11 @@ Cloning an existing XML element creates a new deep copy, identical to the origin
 For example, this code:
 
 {{{
-var qname = new marknote.QName("myNamespace", "myElementName");
-var elem = new marknote.Element(qname);
-elem.setText("here is some content");
+var elem = new marknote.Element("lyrics");
+elem.setText("On a dark desert highway, cool wind in my hair");
 
 var clonedElem = elem.clone();
-clonedElem.setAttribute("color", "orange");
+clonedElem.setAttribute("color",  "orange");
 
 alert(clonedElem);
 }}}
@@ -588,7 +587,7 @@ alert(clonedElem);
 produces this output:
 
 {{{
-<myNamespace:myElementName color="orange">here is some content</myNamespace:myElementName>
+<lyrics color="orange">On a dark desert highway, cool wind in my hair</lyrics>
 }}}
 
 ===Setting and Reading Attributes===
