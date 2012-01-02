@@ -602,10 +602,10 @@ An XML element may contain any number of attributes. For example, given the foll
 
 `attribute1` and `attribute2` are attributes of `element1`, with the values "foo" and "bar", respectively.
 
-To create a `marknote.Attribute` object, instantiate it either with the name and value of the attribute as the construction parameters, or first instantiate it and then set the name and value of the attribute separately. For example, the following code creates two `marknote.Attribute` objects and then sets them to an element:
+This code shows two ways of creating a `marknote.Attribute` object:
 
 {{{
-// quick way to create an attribute
+//quick way to create an attribute
 var attrib1 = new marknote.Attribute("attribute1", "foo");
 
 // longer way to create an attribute
@@ -613,28 +613,41 @@ var attrib2 = new marknote.Attribute();
 attrib2.setName("attribute2");
 attrib2.setValue("bar");
 
-// elem is an existing marknote.Element object
+var elem = new marknote.Element("element1");
 elem.setAttribute(attrib1);
 elem.setAttribute(attrib2);
+
+alert(elem.toString());
 }}}
 
-Alternately, use the `setAttribute(name,value)` method of a `marknote.Element` object to set an attribute, instead of creating a `marknote.Attribute` object explicitly. For example, the following code is equivalent to the code shown above:
+and produces this output:
 
 {{{
-// elem is an existing marknotel.Element object
-elem.setAttribute("attribute1", "foo");
-elem.setAttribute("attribute2", "bar");
+<element1 attribute1="foo" attribute2="bar" />
 }}}
 
-This code sets an element's attributes using an array of `marknote.Attribute` objects. This replaces any existing attributes with the attributes in the new array:
+This code first sets an element's attributes using an array of `marknote.Attribute` objects, and then adds one more additional attribute:
 
 {{{
 var attributes = new Array();
 attributes.push(new marknote.Attribute("attribute1", "foo"));
 attributes.push(new marknote.Attribute("attribute2", "bar"));
 
-// elem is an existing marknote.Element object
+var elem = new marknote.Element("element1");
+
+// set an array of attributes
 elem.setAttributes(attributes);
+
+// set a single attribute
+elem.setAttribute("color", "orange");
+
+alert(elem.toString());
+}}}
+
+and produces this output:
+
+{{{
+<element1 attribute1="foo" attribute2="bar" color="orange" />
 }}}
 
 ====Reading Attributes====
