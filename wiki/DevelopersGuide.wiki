@@ -682,21 +682,21 @@ This code reads an array holding the marknote.Attribute objects for an element:
 {{{
 var attributes = [
     new marknote.Attribute("bass", "medium"),
-    new marknote.Attribute("treble", "low")
+	new marknote.Attribute("treble", "low")
 ];
 
 var elem = new marknote.Element("element1");
 
 elem.setAttributes(attributes);
 
-// get the attributes of the element as an array of marknote.Attribute objects
+//get the attributes of the element as an array of marknote.Attribute objects
 var attributes = elem.getAttributes();
 
-var output = 'attribute values: ';
+var output = 'attributes:';
 
-// loop through the array of attributes, and read each attribute value
+// loop through the array of attributes, and read each attribute name & value
 for (i in attributes) {
-    output += attributes[i].getValue() + ' ';
+    output += '\n    name: ' + attributes[i].getName() + ' value: ' + attributes[i].getValue();
 }
 
 alert(output);
@@ -705,7 +705,9 @@ alert(output);
 and produces this output: 
 
 {{{
-attribute values: medium low 
+attributes:
+    name: bass value: medium
+    name: treble value: low
 }}}
 
 ====Removing Attributes====
