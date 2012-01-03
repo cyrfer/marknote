@@ -689,12 +689,11 @@ var elem = new marknote.Element("element1");
 
 elem.setAttributes(attributes);
 
-//get the attributes of the element as an array of marknote.Attribute objects
+// get the attributes of the element as an array of marknote.Attribute objects
 var attributes = elem.getAttributes();
 
-var output = 'attributes:';
-
 // loop through the array of attributes, and read each attribute name & value
+var output = 'attributes:';
 for (i in attributes) {
     output += '\n    name: ' + attributes[i].getName() + ' value: ' + attributes[i].getValue();
 }
