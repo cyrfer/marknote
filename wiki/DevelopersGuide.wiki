@@ -689,7 +689,7 @@ var elem = new marknote.Element("element1");
 
 elem.setAttributes(attributes);
 
-// get the attributes of the element as an array of marknote.attribute objects
+// get the attributes of the element as an array of marknote.Attribute objects
 var attributes = elem.getAttributes();
 
 var output = 'attribute values: ';
