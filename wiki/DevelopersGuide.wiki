@@ -653,20 +653,56 @@ and produces this output:
 
 ====Reading Attributes====
 
-The following code reads the attribute named `attribute1` from an element:
+The following code reads the value of an attribute from an element:
 
 {{{
-// elem is an existing marknote.Element object
-var attribute = elem.getAttribute("attribute1");
-var value = attribute.getValue();
+var attributes = [
+    new marknote.Attribute("bass", "medium"),
+	new marknote.Attribute("treble", "low")
+];
+
+var elem = new marknote.Element("element1");
+
+elem.setAttributes(attributes);
+
+var attr = elem.getAttribute("treble");
+var value = attr.getValue();
+
+alert(value);
+}}}
+
+and produces this output:
+
+{{{
+low
 }}}
 
 This code reads an array holding all the marknote.Attribute objects for an element:
 
 {{{
-// elem is an existing `marknote.Element` object
-// getAttributes() returns an array of marknote.Attribute objects
+var attributes = [
+    new marknote.Attribute("bass", "medium"),
+    new marknote.Attribute("treble", "low")
+];
+
+var elem = new marknote.Element("element1");
+
+elem.setAttributes(attributes);
+
 var attributes = elem.getAttributes();
+var output = 'attribute values: ';
+
+for (i in attributes) {
+	output += attributes[i].getValue() + ' ';
+}
+
+alert(output);
+}}}
+
+and produces this output: 
+
+{{{
+attribute values: medium low 
 }}}
 
 ====Removing Attributes====
