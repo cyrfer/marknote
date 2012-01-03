@@ -682,7 +682,7 @@ This code reads an array holding the marknote.Attribute objects for an element:
 {{{
 var attributes = [
     new marknote.Attribute("bass", "medium"),
-	new marknote.Attribute("treble", "low")
+    new marknote.Attribute("treble", "low")
 ];
 
 var elem = new marknote.Element("element1");
