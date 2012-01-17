@@ -711,27 +711,62 @@ attributes:
 
 ====Removing Attributes====
 
-The following code removes the attribute named `attribute1` from an element:
+The following code removes an attribute from an element:
 
 {{{
-// elem is an existing marknote.Element object
-elem.removeAttribute("attribute1");
+var artist = new marknote.Element("artist");
+
+artist.setAttribute("lastName", "Mozart");
+artist.setAttribute("firstName", "Wolfgang");
+artist.setAttribute("middleName", "Amadeus");
+
+artist.removeAttribute("firstName");
+
+alert(artist.toString());
+}}}
+
+and produces this output:
+
+{{{
+<artist lastName="Mozart" middleName="Amadeus" />
 }}}
 
 While this code removes all of the attributes from an element:
 
 {{{
-// elem is an existing marknote.Element object
-elem.removeAllAttributes();
+var artist = new marknote.Element("artist");
+
+artist.setAttribute("lastName", "Mozart");
+artist.setAttribute("firstName", "Wolfgang");
+artist.setAttribute("middleName", "Amadeus");
+
+artist.removeAllAttributes();
+
+alert(artist.toString());
+}}}
+
+and produces this output:
+
+{{{
+<artist />
 }}}
 
 ====Cloning Attributes====
 
-To copy a `marknote.Attribute` object, use code such as the following:
+To create a deep clone of a `marknote.Attribute` object, use the `clone` method. For example, this code:
 
 {{{
-// attrib is an existing marknote.Attribute object
-var copy = attrib.clone();
+var artist = new marknote.Element("artist");
+artist.setAttribute("firstName", "Wolfgang");
+
+var anotherFirstName = artist.getAttribute("firstName").clone();
+alert(anotherFirstName.toString());
+}}}
+`
+produces this output:
+
+{{{
+firstName="Wolfgang"
 }}}
 
 ====Converting an Attribute to a String Representation====
@@ -780,9 +815,15 @@ The result of the above code will be a `marknote.Element` object representing th
 
 {{{
 <worksOfArt>
-    <!-- Works of art includes songs, paintings, etc. -->
-    <song>Set up like a bowling pin, Knocked down, it gets to wearin' thin</song>
-    <song><![CDATA[We all came out to Montreux, On the Lake Geneva shoreline]]></song>
+	<!--
+		Works of art includes songs, paintings, etc.
+	-->
+	<song>Set up like a bowling pin, Knocked down, it gets to wearin&apos; thin</song>
+	<song>
+		<![CDATA[
+			We all came out to Montreux, On the Lake Geneva shoreline
+		]]>
+	</song>
 </worksOfArt>
 }}}
 
@@ -791,9 +832,44 @@ The result of the above code will be a `marknote.Element` object representing th
 The following example removes content at a specific position within an element's contents:
 
 {{{
-// worksOfArt is an existing marknote.Element object;
-// remove the content at index 1 (i.e., the second content object) for this element
+//create the parent element, and add a comment to it
+var worksOfArt = new marknote.Element("worksOfArt");
+var comment = new marknote.Comment("Works of art includes songs, paintings, etc.");
+worksOfArt.addContent(comment);
+
+// create the first child element, and add text to it
+var song1 = new marknote.Element("song");
+text = new marknote.Text("Set up like a bowling pin, Knocked down, it gets to wearin' thin");
+song1.addContent(text);
+
+// create the second child element, and add a CDATA section to it
+var song2 = new marknote.Element("song");
+var cdata = new marknote.CDATA("We all came out to Montreux, On the Lake Geneva shoreline");
+song2.addContent(cdata);
+
+// add the child elements to the parent element
+worksOfArt.addContent(song1);
+worksOfArt.addContent(song2);
+
+// remove child content at position 1
 worksOfArt.removeContent(1);
+
+alert(worksOfArt.toString());
+}}}
+
+The above code produces this output:
+
+{{{
+<worksOfArt>
+	<!--
+		Works of art includes songs, paintings, etc.
+	-->
+	<song>
+		<![CDATA[
+			We all came out to Montreux, On the Lake Geneva shoreline
+		]]>
+	</song>
+</worksOfArt>
 }}}
 
 ====Reading Content====
@@ -821,15 +897,15 @@ var content = worksOfArt.getContentAt(1);
 
 ====Element Text Overview====
 
-In addition to the content-handling methods outlined above, the `marknote.Element ` class includes additional methods specific to managing text and CDATA text.
+In addition to the content-handling methods outlined above, the `marknote.Element` class includes additional methods specific to managing text and CDATA text.
 
 Elements often, but don't necessarily, include text content. For example, given the element:
 
 {{{
-<lyrics>Set up, like a bowling pin, Knocked down, it gets to wearin' thin</lyrics>
+<lyrics>We all came out to Montreux, On the Lake Geneva shoreline</lyrics>
 }}}
 
-"Set up, like a bowling pin, Knocked down, it gets to wearin' thin" is the text content of the element. On the other hand, the following element contains no text content:
+"We all came out to Montreux, On the Lake Geneva shoreline" is the text content of the element. On the other hand, the following element contains no text content:
 
 {{{
 <house type="frame" stories="2" rooms="7" />
@@ -840,8 +916,8 @@ Elements often, but don't necessarily, include text content. For example, given 
 The following code sets text content to an element:
 
 {{{
-// lyrics is an existing marknote.Element object
-lyrics.setText("Set up, like a bowling pin, Knocked down, it gets to wearin' thin");
+var lyrics = new marknote.Element("lyrics");
+lyrics.setText("We all came out to Montreux, On the Lake Geneva shoreline");
 }}}
 
 Setting the text of an element using `setText` results in all content first getting removed from the element (including child elements, except comments), before the text gets set.  
@@ -851,8 +927,21 @@ Setting the text of an element using `setText` results in all content first gett
 The following code sets CDATA text content to an element:
 
 {{{
-// lyrics is an existing marknote.Element object
-lyrics.setCDATAText("Set up, like a bowling pin, Knocked down, it gets to wearin' thin");
+var lyrics = new marknote.Element("lyrics");
+
+lyrics.setCDATAText("We all came out to Montreux, On the Lake Geneva shoreline");
+
+alert(lyrics);
+}}}
+
+and produces this output:
+
+{{{
+<lyrics>
+	<![CDATA[
+		We all came out to Montreux, On the Lake Geneva shoreline
+	]]>
+</lyrics>}}}
 }}}
 
 Setting the CDATA text of an element using setCDATAText results in all content first getting removed from the element (including child elements), except comments, before the text gets set.
@@ -868,14 +957,12 @@ lyrics.removeText();
 
 ====Reading Text Content====
 
-The following code reads the text content, or the CDATA text (if applicable), of an element.
+The following code reads the text content, or the CDATA text (if applicable), of an element:
 
 {{{
 // lyrics is an existing marknote.Element object
 var text = lyrics.getText();
 }}}
-
-If the total of `marknote.Text` and `marknote.CDATA` objects within the element's content exceeds one, the above code gets the concatenation of all of the `marknote.Text` and `marknote.CDATA` text within this element's content.
 
 ===Character Entity Reference Conversion===
 
