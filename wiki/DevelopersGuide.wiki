@@ -991,8 +991,20 @@ In addition to using the content-handling methods outlined previously, the `mark
 The following code first removes all comments attached directly to an element, and then adds a new comment with the given text to the element:
 
 {{{
-// elem is an existing marknote.Element object
+var elem = new marknote.Element("lyrics");
 elem.setCommentText("This is a comment");
+
+alert(elem);
+}}}
+
+and produces this output:
+
+{{{
+<lyrics>
+	<!--
+		This is a comment
+	-->
+</lyrics>
 }}}
 
 ====Removing Comments====
