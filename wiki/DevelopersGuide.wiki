@@ -1049,8 +1049,10 @@ doc.setRootElement(songs);
 To add child elements to a parent element, use code such as the following:
 
 {{{
-// the parent element
+// create a document, attach the root element
+var doc = new marknote.Document();
 var songs = new marknote.Element("songs");
+doc.setRootElement(songs);
 
 // the first child element
 var firstSong = new marknote.Element("song");
@@ -1063,6 +1065,17 @@ secondSong.setAttribute("title", "Smoke on the Water");
 // attach the child elements to the parent element
 songs.addChildElement(firstSong);
 songs.addChildElement(secondSong);
+
+alert(doc.toString());
+}}}
+
+which produces the following output:
+
+{{{
+<songs>
+	<song title="Truckin'" />
+	<song title="Smoke on the Water" />
+</songs>
 }}}
 
 ====Removing Child Elements====
@@ -1109,13 +1122,16 @@ To read an array of all child elements of a given parent element, use the `getCh
 var children = parent.getChildElements();
 
 for (var i=0; i<children.length; i++) {
+
     var child = children[i];
+
     var message = 
         "Element name is " + 
         child.getName() + 
         " and title attribute value is " + 
-        child.getAttributeValue("title"));
+        child.getAttributeValue("title");
     alert(message);
+
 }
 }}}
 
@@ -1151,8 +1167,8 @@ for (var i=0; i<paintings.length; i++) {
     var child = paintings[i];
     alert(
         "Element name is " + 
-        child.getName() + " 
-        and title is " + 
+        child.getName() + 
+        " and title is " + 
         child.getAttribute("title").getValue()
     );
 }
@@ -1161,17 +1177,36 @@ for (var i=0; i<paintings.length; i++) {
 Use a `marknote.QName` (qualified name) object to identify child elements by qualified name. For example:
 
 {{{
-// create a qualified name with a prefix of "art"
-// and a local part of "painting"
-// (i.e., art:painting)
-var qname = new marknote.QName("art", "painting");
+// the parent element
+var worksOfArtQName = new marknote.QName("art", "worksOfArt");
+var worksOfArt = new marknote.Element(worksOfArtQName);
 
-// worksOfArt is an existing marknote.Element object;
-// read from it all children having the element name art:painting
-var paintings = worksOfArt.getChildElements(qname);
+// the child elements
+var paintingQName = new marknote.QName("art", "painting");
+var firstPainting = new marknote.Element(paintingQName);
+var secondPainting = new marknote.Element(paintingQName);
+
+// set attributes for the child elements
+firstPainting.setAttribute("title", "Mona Lisa");
+secondPainting.setAttribute("title", "Starry Night");
+
+// attach the child elements to the parent element
+worksOfArt.addChildElement(firstPainting);
+worksOfArt.addChildElement(secondPainting);
+
+// alert out the parent art:worksOfArt element along with its child elements
+alert(worksOfArt);
+
+// find the art:painting child elements using the QName
+var paintings = worksOfArt.getChildElements(paintingQName);
+
+// alert out each of the art:painting child elements
+for (var i in paintings){
+	alert(paintings[i].toString());
+}
 }}}
 
-A string using the appropriate prefix syntax can also identify child elements having a qualified name. For example, the following code is equivalent to the above code:
+A string using the appropriate prefix syntax can also identify child elements having a qualified name. For example:
 
 {{{
 // worksOfArt is an existing marknote.Element object
@@ -1182,7 +1217,7 @@ The following example retrieves the first occurrence only of an element having a
 
 {{{
 // worksOfArt is an existing marknote.Element object
-var firstPainting = worksOfArt.getChildElement("painting");
+var firstPainting = worksOfArt.getChildElement("art:painting");
 }}}
 
 While this code retrieves a child element by its specific position within the array of parent elements:
