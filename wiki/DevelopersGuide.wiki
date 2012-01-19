@@ -1220,9 +1220,9 @@ The following example retrieves the first occurrence only of an element having a
 var firstPainting = worksOfArt.getChildElement("art:painting");
 }}}
 
-While this code retrieves a child element by its specific position within the array of parent elements:
+While this code retrieves a child element by its specific position within the array of parent elements (using zero-based indexing):
 
 {{{
 // worksOfArt is an existing marknote.Element object
-var thirdElement = worksOfArt.getChildElementAt(3);
+var thirdElement = worksOfArt.getChildElementAt(2); // 0 is the first element, 1 is the second, etc.
 }}}
