@@ -1241,7 +1241,7 @@ The following example steps through an example of first creating XML, then conve
 In the first step of our example, we create the XML:
 
 {{{
-//create the document, attach the root element
+// create the document, attach the root element
 var doc = new marknote.Document();
 var rootElement = new marknote.Element("songs");
 doc.setRootElement(rootElement);
@@ -1277,7 +1277,7 @@ The result of the above is an XML document representing this XML:
 </songs>
 }}}
 
-The next step of our example is to convert the above XML to a JSON object:
+In the next step of our example, we convert the above XML to a JSON object:
 
 {{{
 // first, grab the root element and its child elements from the XML doc
@@ -1331,7 +1331,7 @@ This results in a JSON object of the form:
 }
 }}}
 
-The final step in our example is to take the above JSON object and convert it back into XML, like this:
+In the final step of our example, we take the above JSON object and convert it back into XML:
 
 {{{
 // docFromJson is a new XML doc that will hold the converted JSON
