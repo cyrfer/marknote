@@ -1357,12 +1357,12 @@ for (var i=0; i<items.length; i++) {
 	var elem = new marknote.Element("song"); // <song />
 
 	// after this, we have:
-	// <songs><song /> ... </songs>
+	// <songs> ... <song /></songs>
 	docFromJson.getRootElement().addChildElement(elem); 
 
 	for (var propName in item) {
 		// after this, we have:
-		// <songs><song attribName="..." ... />  ... </songs>
+		// <songs> ... <song attrib="..."  ... /></songs>
 		elem.setAttribute(propName, item[propName]);  
 	}	
 
