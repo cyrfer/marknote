@@ -1226,3 +1226,157 @@ While this code retrieves a child element by its specific position within the ar
 // worksOfArt is an existing marknote.Element object
 var thirdElement = worksOfArt.getChildElementAt(2); // 0 is the first element, 1 is the second, etc.
 }}}
+
+==Converting XML to JSON and JSON to XML==
+
+===Introduction===
+Converting from XML to JSON and back using Marknote requires a working knowledge of JSON syntax, so this is a slightly more advanced topic than the preceding sections.  However, once you have a command of JSON, converting back and forth is very straightforward.
+
+With Marknote, you have complete control over how your conversion works.  Instead of using a tool to just perform a blind conversion, you control the conversion exactly the way you want to.  Drill as deep as you want to into the JSON or XML, or filter what you're converting however you please.
+
+===An Example===
+
+The following example steps through an example of first creating XML, then converting the XML to JSON, and finally converting the JSON back to XML again.
+
+In the first step of our example, we create the XML:
+
+{{{
+//create the document, attach the root element
+var doc = new marknote.Document();
+var rootElement = new marknote.Element("songs");
+doc.setRootElement(rootElement);
+
+// add Truckin'
+var truckingElement = new marknote.Element("song");
+truckingElement.setAttribute("artist", "Grateful Dead");
+truckingElement.setAttribute("title", "Truckin'");
+rootElement.addChildElement(truckingElement);
+
+// add Smoke on the Water
+var smokeElement = new marknote.Element("song");
+smokeElement.setAttribute("artist", "Deep Purple");
+smokeElement.setAttribute("title", "Smoke on the Water");
+rootElement.addChildElement(smokeElement);
+
+// add Hair of the Dog
+var dogElement = new marknote.Element("song");
+dogElement.setAttribute("artist", "Nazareth");
+dogElement.setAttribute("title", "Hair of the Dog");
+rootElement.addChildElement(dogElement);
+
+alert(doc);
+}}}
+
+The result of the above is a marknote.Element representing this XML:
+
+{{{
+<songs>
+	<song artist="Grateful Dead" title="Truckin'" />
+	<song artist="Deep Purple" title="Smoke on the Water" />
+	<song artist="Nazareth" title="Hair of the Dog" />
+</songs>
+}}}
+
+The next step of our example is to convert the above XML to a JSON object:
+
+{{{
+// first, grab the root element and its child elements from the XML doc
+// (for this simple example, we're only going to try to drill in one level deep)
+var rootElem = doc.getRootElement();
+var childElements = rootElem.getChildElements();
+
+var json = {};
+var rootName = rootElem.getName(); // the name of the root element is "songs"
+
+// now, create the root property of our JSON object, and set its value to a new array,
+// which will result in JSON that looks like this:
+// { songs: [] }
+json[rootName] = [];  
+
+// loop through the child XML elements and create a JSON object for each one;
+// within each of those child JSON objects, we'll also convert the child element's
+// attributes to JSON properties
+for (var i=0; i<childElements.length; i++) {
+
+	var elem = childElements[i];
+	var attributes = elem.getAttributes();
+	
+	var child = {}; // a song
+
+	for (var j=0; j<attributes.length; j++) { // add the attributes of the song as properties
+		var attribute = attributes[j];
+		child[attribute.getName()] = attribute.getValue(); // { attName: attValue }	
+	}
+
+        // attach the new child JSON object to the parent array
+	json[rootName].push(child); // { songs: [ { attName: attValue, attName: attValue, ... }, ... ] } 
+	
+}
+}}}
+
+This results in a JSON object of the form:
+
+{{{
+{ songs: [{ 
+            artist: "Grateful Dead", 
+            title: "Truckin'"
+        }, {
+             artist: "Deep Purple", 
+             title: "Smoke on the Water"
+        }, {
+            artist: "Nazareth", 
+            title: "Hair of the Dog"
+        }
+   ]
+}
+}}}
+
+The final step in our example is to take the above JSON object and convert it back into XML, like this:
+
+{{{
+// docFromJson is a new XML doc that will hold the converted JSON
+var docFromJson = new marknote.Document();
+
+// after this, we have:
+// <songs />	
+docFromJson.setRootElement(new marknote.Element(rootName)); 
+
+// items is the JSON array that the JSON object's root property points to
+// (in this case, each item is a song)
+var items = json[rootName];
+
+// loop through the items
+for (var i=0; i<items.length; i++) {
+
+	// get the next song object
+	var item = items[i];
+
+	// in XML we have to give our element a name, unlike our JSON item;
+	// unfortunately, the JSON item doesn't give us any information 
+	/// about how to name the element
+	var elem = new marknote.Element("song"); // <song />
+
+	// after this, we have:
+	// <songs><song /> ... </songs>
+	docFromJson.getRootElement().addChildElement(elem); 
+
+	for (var propName in item) {
+		// after this, we have:
+		// <songs><song attribName="..." ... />  ... </songs>
+		elem.setAttribute(propName, item[propName]);  
+	}	
+
+}
+
+alert(docFromJson);
+}}}
+
+This results in this XML (the same as our original XML):
+
+{{{
+<songs>
+	<song artist="Grateful Dead" title="Truckin'" />
+	<song artist="Deep Purple" title="Smoke on the Water" />
+	<song artist="Nazareth" title="Hair of the Dog" />
+</songs>
+}}}
