@@ -1230,9 +1230,9 @@ var thirdElement = worksOfArt.getChildElementAt(2); // 0 is the first element, 1
 ==Converting XML to JSON and JSON to XML==
 
 ===Introduction===
-Converting from XML to JSON and back using Marknote requires a working knowledge of JSON syntax, so this is a slightly more advanced topic than the preceding sections.  However, once you have a command of JSON, converting back and forth is very straightforward.
+Converting from XML to JSON and back using _Marknote_ requires a working knowledge of JSON syntax, so this is a slightly more advanced topic than the preceding sections.  However, once you have a command of JSON, converting back and forth is very straightforward.
 
-With Marknote, you have complete control over how your conversion works.  Instead of using a tool to just perform a blind conversion, you control the conversion exactly the way you want to.  Drill as deep as you want to into the JSON or XML, or filter what you're converting however you please.
+You have complete control over how your conversion works.  Drill as deep as you want to into the JSON or XML, or filter what you're converting however you please.
 
 ===An Example===
 
@@ -1267,7 +1267,7 @@ rootElement.addChildElement(dogElement);
 alert(doc);
 }}}
 
-The result of the above is a marknote.Element representing this XML:
+The result of the above is an XML document representing this XML:
 
 {{{
 <songs>
@@ -1281,7 +1281,7 @@ The next step of our example is to convert the above XML to a JSON object:
 
 {{{
 // first, grab the root element and its child elements from the XML doc
-// (for this simple example, we're only going to try to drill in one level deep)
+// (for this simple example, we're only going to try to drill in one child level deep)
 var rootElem = doc.getRootElement();
 var childElements = rootElem.getChildElements();
 
@@ -1290,8 +1290,8 @@ var rootName = rootElem.getName(); // the name of the root element is "songs"
 
 // now, create the root property of our JSON object, and set its value to a new array,
 // which will result in JSON that looks like this:
-// { songs: [] }
-json[rootName] = [];  
+// { songs: [ ] }
+json[rootName] = [ ];  
 
 // loop through the child XML elements and create a JSON object for each one;
 // within each of those child JSON objects, we'll also convert the child element's
@@ -1342,7 +1342,7 @@ var docFromJson = new marknote.Document();
 docFromJson.setRootElement(new marknote.Element(rootName)); 
 
 // items is the JSON array that the JSON object's root property points to
-// (in this case, each item is a song)
+// (in this case, each item is a song object)
 var items = json[rootName];
 
 // loop through the items
