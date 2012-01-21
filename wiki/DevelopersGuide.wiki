@@ -1281,7 +1281,7 @@ In the next step of our example, we convert the above XML to a JSON object:
 
 {{{
 // first, grab the root element and its child elements from the XML doc
-// (for this simple example, we're only going to try to drill in one child level deep)
+// (for this simple example, we'll only drill in one child level deep)
 var rootElem = doc.getRootElement();
 var childElements = rootElem.getChildElements();
 
