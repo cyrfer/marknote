@@ -1228,10 +1228,10 @@ var thirdElement = worksOfArt.getChildElementAt(2); // 0 is the first element, 1
 }}}
 
 ==Using marknote with HTML==
-_Marknote_ comes in any with any subtype of XML, including XHTML.
+_Marknote_ comes in any when working with any subtype of XML, including XHTML.
 
 ===Writing HTML===
-Consider the following HTML which includes a script tag to manipulate the HTML DOM:
+Consider the following markup which includes a script tag to manipulate the HTML DOM:
 
 {{{
 <html>
@@ -1263,12 +1263,10 @@ document.getElementById('myTestDiv').innerHTML = ul.toString();
 
 The above code produces the following output in a web browser:
 
-{{{
 * red
 * green
 * blue
 * yellow
-}}}
 
 ==Converting XML to JSON and JSON to XML==
 
