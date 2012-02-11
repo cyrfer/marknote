@@ -50,4 +50,4 @@
             * [DevelopersGuide#Adding_Child_Elements Adding Child Elements]
             * [DevelopersGuide#Removing_Child_Elements Removing Child Elements]
             * [DevelopersGuide#Reading_Child_Elements Reading Child Elements]
-    * [DevelopersGuide#Converting_XML_to_JSON_and_JSON_to_XML XML to JSON and JSON to XML]
+    * [DevelopersGuide#Converting_XML_to_JSON_and_JSON_to_XML Converting XML to JSON and JSON to XML]
