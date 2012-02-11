@@ -1269,7 +1269,9 @@ The above code produces the following output in a web browser:
   * yellow
 
 ===Reading HTML===
-_Marknote_ at its heart is an XML parser, and not an HTML parser, so it needs good XML to work with. With that in mind, you can use _Marknote_ to read HTML as well, as long as the HTML is well-formed XHTML and has a root element for _Marknote_ to work with.  
+_Marknote_ at its heart is an XML parser, and not an HTML parser, so it needs good XML to work with. With that in mind,  _Marknote_ may not be an ideal tool for parsing HTML, except in specific circumstances, for example where the HTML contains _data_ that you may want to capture for data manipulation (for example, for conversion to JSON -- see the next section).
+
+If you do use _Marknote_ to parse HTML, it needs to be well-formed XHTML and _Marknote_ needs a root element to work with.  
 
 For example, this markup:
 
@@ -1282,16 +1284,10 @@ For example, this markup:
 <body>
 
 <div id="myTestDiv">
-<div>
 <table>
     <tr><td>yellow</td></tr>
     <tr><td>green</td></tr>
 </table>
-<ul>
-  <li>red</li>
-  <li>blue</li>
-</ul>
-</div>
 </div>
 
 <script>
@@ -1308,22 +1304,16 @@ alert(doc.toString());
 Will produce this output:
 
 {{{
-<div>
-	<table>
-		<tbody>
-			<tr>
-				<td>yellow</td>
-			</tr>
-			<tr>
-				<td>green</td>
-			</tr>
-		</tbody>
-	</table>
-	<ul>
-		<li>red</li>
-		<li>blue</li>
-	</ul>
-</div>
+<table>
+	<tbody>
+		<tr>
+			<td>yellow</td>
+		</tr>
+		<tr>
+			<td>green</td>
+		</tr>
+	</tbody>
+</table>
 }}}
 
 ==Converting XML to JSON and JSON to XML==
