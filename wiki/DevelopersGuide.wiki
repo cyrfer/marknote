@@ -1236,7 +1236,7 @@ Consider the following markup which includes a script tag to manipulate the HTML
 {{{
 <html>
 <head>
-<script src="../javascript/marknote/distribution/marknote.js"></script>
+<script src="path/to/my/javascript/marknote.js"></script>
 </head>
 
 <body>
@@ -1249,9 +1249,9 @@ var colors = [ 'red', 'green', 'blue', 'yellow' ];
 var ul = new marknote.Element("ul");
 
 for (var i=0; i<colors.length; i++) {
-	var li = new marknote.Element("li");
-	li.setText(colors[i]);
-	ul.addChildElement(li);
+    var li = new marknote.Element("li");
+    li.setText(colors[i]);
+    ul.addChildElement(li);
 }
 
 document.getElementById('myTestDiv').innerHTML = ul.toString();
@@ -1263,10 +1263,10 @@ document.getElementById('myTestDiv').innerHTML = ul.toString();
 
 The above code produces the following output in a web browser:
 
-* red
-* green
-* blue
-* yellow
+  * red
+  * green
+  * blue
+  * yellow
 
 ==Converting XML to JSON and JSON to XML==
 
