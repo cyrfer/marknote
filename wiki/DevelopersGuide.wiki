@@ -1268,6 +1268,64 @@ The above code produces the following output in a web browser:
   * blue
   * yellow
 
+===Reading HTML===
+You can use _Marknote_ to read HTML as well, as long as the HTML is well-formed XHTML and has a root element for _Marknote_ to work with.
+
+For example, this markup:
+
+{{{
+<html>
+<head>
+<script src="../javascript/marknote/distribution/marknote.js"></script>
+</head>
+
+<body>
+
+<div id="myTestDiv">
+<div>
+<table>
+    <tr><td>yellow</td></tr>
+    <tr><td>green</td></tr>
+</table>
+<ul>
+  <li>red</li>
+  <li>blue</li>
+</ul>
+</div>
+</div>
+
+<script>
+var html = document.getElementById('myTestDiv').innerHTML;
+var parser = new marknote.Parser();
+var doc = parser.parse(html);
+alert(doc.toString());
+</script>
+
+</body>
+</html>
+}}}
+
+Will produce this output:
+
+{{{
+<div>
+	<table>
+		<tbody>
+			<tr>
+				<td>yellow</td>
+			</tr>
+			<tr>
+				<td>green</td>
+			</tr>
+		</tbody>
+	</table>
+	<ul>
+		<li>red</li>
+		<li>blue</li>
+	</ul>
+</div>
+}}}
+
 ==Converting XML to JSON and JSON to XML==
 
 ===Introduction===
