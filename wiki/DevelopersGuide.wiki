@@ -208,7 +208,7 @@ The `marknote.AJAX` object also includes a `getRequest` function to get the unde
 
 Many of the excellent Javascript frameworks that are now available, such as `jQuery` (http://jquery.com) or `Ext JS` (http://sencha.com), and a number of others, provide strong AJAX handling.  If you use such a framework, you can then of course use that framework's AJAX classes to make your AJAX call instead of using a `marknote.AJAX` object to fire off the request.  
 
-The bottom line is that all AJAX calls work the same way:  you make the AJAX call, and you provide a callback function to handle the response text that comes back from the AJAX call.  You may use _Marknote_ code in any AJAX callback handler.
+The bottom line is that all AJAX calls work the same way:  you make the AJAX call, and you provide a callback function to handle the response text that comes back from the AJAX call.  You may use _marknote_ code in any AJAX callback handler.
 
 Frameworks such as `Ext JS` also include a proxy class to facilitate making AJAX calls to external URL's.
 
@@ -226,7 +226,7 @@ There are several ways to create a new `marknote.Document` object:
 
 ====Reading XML into a Document====
 
-_Marknote_ can parse XML into a `marknote.Document` object from a string or from a URL.  See [DevelopersGuide#Parsing_XML Parsing XML].
+_marknote_ can parse XML into a `marknote.Document` object from a string or from a URL.  See [DevelopersGuide#Parsing_XML Parsing XML].
 
 ====Creating an XML Document from Scratch====
 
@@ -966,7 +966,7 @@ var text = lyrics.getText();
 
 ===Character Entity Reference Conversion===
 
-_Marknote_ automatically performs character entity reference encoding and decoding when setting or reading text content for an element (this does not apply to CDATA text, since CDATA text is read and written literally). For example, given the string `4<5`, _Marknote_ will encode this value to `4&lt;5` when setting it as the element's text content, and will automatically decode it back to `4<5` when reading the text content back out.
+_marknote_ automatically performs character entity reference encoding and decoding when setting or reading text content for an element (this does not apply to CDATA text, since CDATA text is read and written literally). For example, given the string `4<5`, _marknote_ will encode this value to `4&lt;5` when setting it as the element's text content, and will automatically decode it back to `4<5` when reading the text content back out.
 
 For example, this code sets and then reads text content containing a character entity reference:
 
@@ -1230,7 +1230,7 @@ var thirdElement = worksOfArt.getChildElementAt(2); // 0 is the first element, 1
 ==Converting XML to JSON and JSON to XML==
 
 ===Introduction===
-Converting from XML to JSON and back using _Marknote_ requires a working knowledge of JSON syntax, so this is a slightly more advanced topic than the preceding sections.  However, once you have a command of JSON, converting back and forth is very straightforward.
+Converting from XML to JSON and back using _marknote_ requires a working knowledge of JSON syntax, so this is a slightly more advanced topic than the preceding sections.  However, once you have a command of JSON, converting back and forth is very straightforward.
 
 You have complete control over how your conversion works.  Drill as deep as you want to into the JSON or XML, or filter what you're converting however you please.
 
