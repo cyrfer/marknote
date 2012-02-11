@@ -5,7 +5,7 @@
 
 ===Reading XML From a String===
 
-_Marknote_ includes a `marknote.Parser` class to parse XML from a string or from a URL. Its output is a `marknote.Document` object.
+_marknote_ includes a `marknote.Parser` class to parse XML from a string or from a URL. Its output is a `marknote.Document` object.
 
 Here is an example of parsing XML from a string into a `marknote.Document` object:
 
@@ -33,7 +33,7 @@ The code above produces the following output:
 
 ===Reading XML Directly From a URL===
 
-_Marknote_ can easily parse XML documents from a URL within its own HTTP domain (if you want to access an XML at a URL external to an application's HTTP domain, one way to do that is by pointing to a local URL which streams back the external XML).
+_marknote_ can easily parse XML documents from a URL within its own HTTP domain (if you want to access an XML at a URL external to an application's HTTP domain, one way to do that is by pointing to a local URL which streams back the external XML).
 
 Here is an example of code that reads XML directly from a specified URL:
 
