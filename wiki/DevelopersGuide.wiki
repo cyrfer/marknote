@@ -1227,6 +1227,49 @@ While this code retrieves a child element by its specific position within the ar
 var thirdElement = worksOfArt.getChildElementAt(2); // 0 is the first element, 1 is the second, etc.
 }}}
 
+==Using marknote with HTML==
+_Marknote_ comes in any with any subtype of XML, including XHTML.
+
+===Writing HTML===
+Consider the following HTML which includes a script tag to manipulate the HTML DOM:
+
+{{{
+<html>
+<head>
+<script src="../javascript/marknote/distribution/marknote.js"></script>
+</head>
+
+<body>
+
+<div id="myTestDiv"></div>
+
+<script>
+var colors = [ 'red', 'green', 'blue', 'yellow' ];
+
+var ul = new marknote.Element("ul");
+
+for (var i=0; i<colors.length; i++) {
+	var li = new marknote.Element("li");
+	li.setText(colors[i]);
+	ul.addChildElement(li);
+}
+
+document.getElementById('myTestDiv').innerHTML = ul.toString();
+</script>
+
+</body>
+</html>
+}}}
+
+The above code produces the following output in a web browser:
+
+{{{
+* red
+* green
+* blue
+* yellow
+}}}
+
 ==Converting XML to JSON and JSON to XML==
 
 ===Introduction===
