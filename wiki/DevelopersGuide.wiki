@@ -1269,7 +1269,7 @@ The above code produces the following output in a web browser:
   * yellow
 
 ===Reading HTML===
-You can use _Marknote_ to read HTML as well, as long as the HTML is well-formed XHTML and has a root element for _Marknote_ to work with.
+_Marknote_ at its heart is an XML parser, and not an HTML parser, so it needs good XML to work with. With that in mind, you can use _Marknote_ to read HTML as well, as long as the HTML is well-formed XHTML and has a root element for _Marknote_ to work with.  
 
 For example, this markup:
 
